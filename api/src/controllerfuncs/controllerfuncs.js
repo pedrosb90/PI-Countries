@@ -4,10 +4,10 @@ const { Country, Activity } = require("../db");
 const { API_KEY } = process.env;
 
 async function getTotalCountryData() {
-  const totalCountryData = await axios.get("https://restcountries.com/v3/all");
+  const totalCountryData = await axios.get(`https://restcountries.com/v3/all`);
 
-  const countryData = await totalCountryData.data.results.map((m) => ({
-    // Id:
+  const countryData = await totalCountryData.data.map((m) => ({
+    Id: m.fifa,
     Name: m.name.common,
     Flag: m.flag,
     Capital: m.capital,
@@ -15,14 +15,8 @@ async function getTotalCountryData() {
     Subregion: m.subregion,
     Population: m.population,
     Area: m.area,
-
-    // Imagen de la bandera. *
-    // Continente. *
-    // Capital. *
-    // Subregión.
-    // Área.
-    // Población. *
   }));
+
   return countryData;
 }
 

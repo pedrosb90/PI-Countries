@@ -1,9 +1,23 @@
 const express = require("express");
+const { getTotalCountryData } = require("../controllerfuncs/controllerfuncs");
 const countries = express.Router();
 
-countries.get("/countries", async (req, res) => {});
+countries.get("/", async (req, res) => {
+  try {
+    const dataCountries = await getTotalCountryData();
+
+    if (!dataCountries) {
+      throw new Error("Data not found");
+    } else {
+      res.status(200).send(dataCountries);
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Unknown error" });
+  }
+});
 // 📍 GET | /countries
 // Obtiene un arreglo de objetos, donde cada objeto es un país con toda su información.
+
 countries.get("/:idPais", async (req, res) => {});
 // 📍 GET | /countries/:idPais
 // Esta ruta obtiene el detalle de un país específico. Es decir que devuelve un objeto con la información pedida en el detalle de un país.
