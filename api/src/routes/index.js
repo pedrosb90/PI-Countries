@@ -10,7 +10,7 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 router.use("/countries", countries);
 router.use("/name", countries);
-router.use("/id", countries);
+router.use("/:idPais", countries);
 
 router.use("/activities", activities);
 

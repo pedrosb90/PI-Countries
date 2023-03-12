@@ -1,5 +1,8 @@
 const express = require("express");
-const { getTotalCountryData } = require("../controllerfuncs/controllerfuncs");
+const {
+  getTotalCountryData,
+  getSpecificData,
+} = require("../controllerfuncs/controllerfuncs");
 const countries = express.Router();
 
 countries.get("/", async (req, res) => {
@@ -11,18 +14,32 @@ countries.get("/", async (req, res) => {
     } else {
       res.status(200).send(dataCountries);
     }
-  } catch (error) {
-    res.status(500).json({ error: "Unknown error" });
+  } catch (err) {
+    res.status(500).json({ err: "Unknown error" });
   }
 });
-// 📍 GET | /countries
-// Obtiene un arreglo de objetos, donde cada objeto es un país con toda su información.
 
-countries.get("/:idPais", async (req, res) => {});
+countries.get("/:idPais", async (req, res) => {
+  try {
+    const { idPais } = req.params;
+    if (idPais.length > 3) {
+      throw new Error();
+    } else {
+      const countryDatabyId = await getSpecificData(idPais);
+
+      res.status(200).json(countryDatabyId);
+    }
+  } catch (err) {
+    res
+      .status(500)
+      .json({ error: "Country code must have 3 characters or less" });
+  }
+});
 // 📍 GET | /countries/:idPais
 // Esta ruta obtiene el detalle de un país específico. Es decir que devuelve un objeto con la información pedida en el detalle de un país.
 // El país es recibido por parámetro (ID de tres letras del país).
 // Tiene que incluir los datos de las actividades turísticas asociadas a este país.
+
 countries.get("/", async (req, res) => {});
 // 📍 GET | /countries/name?="..."
 // Esta ruta debe obtener todos aquellos países que coinciden con el nombre recibido por query. (No es necesario que sea una coincidencia exacta).
