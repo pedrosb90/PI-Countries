@@ -18,7 +18,7 @@ async function getTotalCountryData() {
       const country = await Country.create({
         countryId: m.cca3,
         name: m.name.common,
-        flag: m.flags.svg,
+        flag: m.flags[0],
         capital: m.capital ? m.capital[0] : null,
         continent: m.region,
         subregion: m.subregion,
@@ -46,7 +46,7 @@ async function getSpecificData(idPais) {
   const idData = await countryIdData.data.map((m) => ({
     countryId: m.fifa || m.cca3 || m.cioc,
     name: m.name.common,
-    flag: m.flag,
+    flag: m.flags[0],
     capital: m.capital,
     continent: m.continents,
     subregion: m.subregion,
@@ -55,7 +55,7 @@ async function getSpecificData(idPais) {
   }));
 
   const idDatafound = idData.find(
-    (f) => f.Id.toLowerCase() == idPais.toLowerCase()
+    (f) => f.countryId.toLowerCase() == idPais.toLowerCase()
   );
 
   return idDatafound;

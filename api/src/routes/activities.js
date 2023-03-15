@@ -21,15 +21,39 @@ activities.get("/", async (req, res) => {
 activities.post("/", async (req, res) => {
   const { name, difficulty, duration, season, countryId } = req.body;
 
+  if (typeof name !== "string" || name.trim().length === 0) {
+    res.status(400).send("Invalid name");
+    return;
+  }
+
+  if (typeof difficulty !== "number" || difficulty < 1 || difficulty > 5) {
+    res.status(400).send("Invalid difficulty");
+    return;
+  }
+
+  if (typeof duration !== "number" || duration < 0) {
+    res.status(400).send("Invalid duration");
+    return;
+  }
+
+  const validSeasons = ["spring", "summer", "fall", "winter"];
+  if (!validSeasons.includes(season)) {
+    res.status(400).send("Invalid season");
+    return;
+  }
+
+  const uppercasedCountryId = countryId.toUpperCase();
+
   try {
-    const activity = await createActivity(
+    const activityRecord = await createActivity(
       name,
       difficulty,
       duration,
       season,
-      countryId.toUpperCase()
+      uppercasedCountryId
     );
-    res.json(activity);
+
+    res.json(activityRecord);
   } catch (err) {
     console.error(err);
     res.status(500).send("Internal Server Error");
