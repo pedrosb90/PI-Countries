@@ -1,10 +1,12 @@
 const express = require("express");
+
 const {
   getTotalCountryData,
   getSpecificData,
   filterByName,
 } = require("../controllerfuncs/controllerfuncs");
 const countries = express.Router();
+const { Country, Activity } = require("../db");
 
 countries.get("/:idPais", async (req, res) => {
   //falta traer actividades asociadas
@@ -37,6 +39,7 @@ countries.get("/", async (req, res) => {
     }
   } catch (err) {
     res.status(500).json({ err: "Unknown error" });
+    console.log(err);
   }
 });
 

@@ -1,17 +1,12 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  sequelize.define(
+  const Activity = sequelize.define(
     "activity",
     {
       name: {
         type: DataTypes.STRING,
         allowNull: false,
-      },
-      id: {
-        type: DataTypes.UUID,
-        primaryKey: true,
-        defaultValue: DataTypes.UUIDV4,
       },
       difficulty: {
         type: DataTypes.INTEGER,
@@ -28,4 +23,15 @@ module.exports = (sequelize) => {
     },
     { timestamps: false }
   );
+
+  Activity.associate = (models) => {
+    Activity.belongsTo(models.Country, {
+      foreignKey: {
+        field: "country_id",
+        allowNull: false,
+      },
+    });
+  };
+
+  return Activity;
 };

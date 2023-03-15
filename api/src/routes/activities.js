@@ -2,6 +2,13 @@ const express = require("express");
 const activities = express.Router();
 const { Country, Activity } = require("../db");
 
+const {
+  getTotalCountryData,
+  getSpecificData,
+  filterByName,
+  getActivitiesDB,
+} = require("../controllerfuncs/controllerfuncs");
+
 activities.get("/", async (req, res) => {
   try {
     const activities = await getActivitiesDB();
@@ -13,34 +20,28 @@ activities.get("/", async (req, res) => {
   }
 });
 
-activities.post("/", (req, res) => {
-  // 📍 POST | /activities
-  // Esta ruta recibirá todos los datos necesarios para crear una actividad turística y relacionarla con los países solicitados.
-  // Toda la información debe ser recibida por body.
-  // Debe crear la actividad turística en la base de datos, y esta debe estar relacionada con los países indicados (al menos uno).
+activities.post("/", async (req, res) => {
+  const { name, difficulty, duration, season, countryId } = req.body;
+
   try {
-    const { name, difficulty, duration, season, countries } = req.body;
-    if (name && difficulty && duration && season && countries) {
-      const activity = Activity.create({
-        name,
-        difficulty,
-        duration,
-        season,
-      });
+    const country = await Country.findByPk(countryId);
 
-      countries.forEach(async (id) => {
-        const country = await Country.findOne({
-          where: { id: { [Op.iLike]: `%${id}%` } },
-        });
-        await country?.addActivity(activity);
-      });
-
-      return res.send(activity);
-    } else {
-      return res.status(404).json("Missing data");
+    if (!country) {
+      return res.status(404).send("Country not found");
     }
-  } catch (error) {
-    next(error);
+
+    const activity = await Activity.findOrCreate({
+      name,
+      difficulty,
+      duration,
+      season,
+      countryId,
+    });
+
+    return res.json(activity);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).send("Internal Server Error");
   }
 });
 
