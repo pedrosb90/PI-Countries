@@ -14,7 +14,7 @@ module.exports = (sequelize) => {
       },
       duration: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
       },
       season: {
         type: DataTypes.STRING,

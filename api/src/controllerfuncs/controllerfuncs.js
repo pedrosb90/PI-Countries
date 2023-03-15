@@ -54,18 +54,52 @@ async function getSpecificData(idPais) {
   return idDatafound;
 }
 
-async function getActivitiesDB(id) {
-  const pk = id;
+async function getActivitiesDB(countryId, activities) {
+  try {
+    const activityRecords = [];
 
-  const activities = [
-    { name: "name", id: pk, difficulty: 1, duration: 1, season: "Summer" },
-  ];
-  activities.forEach((activity) => {
-    Activity.findOrCreate({ where: { name: activity.name } });
-  });
+    for (const activity of activities) {
+      const [activityRecord, created] = await Activity.findOrCreate({
+        where: { name: activity.name },
+        defaults: {
+          difficulty: activity.difficulty,
+          duration: activity.duration,
+          season: activity.season,
+          countryId: countryId,
+        },
+      });
 
-  const totActivities = await Activity.findAll();
-  return totActivities;
+      activityRecords.push(activityRecord);
+    }
+
+    return activityRecords;
+  } catch (err) {
+    console.log(err);
+    throw new Error("Failed to get activities from database");
+  }
+}
+async function createActivity(name, difficulty, duration, season, countryId) {
+  try {
+    const country = await Country.findByPk(countryId);
+    console.log(country);
+
+    if (!country) {
+      throw new Error("Country not found");
+    }
+
+    const activity = await Activity.create({
+      name,
+      difficulty,
+      duration,
+      season,
+      countryId,
+    });
+
+    return activity;
+  } catch (err) {
+    console.error(err);
+    throw new Error("Internal Server Error");
+  }
 }
 
 async function filterByName(name) {
@@ -98,4 +132,5 @@ module.exports = {
   getSpecificData,
   getActivitiesDB,
   filterByName,
+  createActivity,
 };

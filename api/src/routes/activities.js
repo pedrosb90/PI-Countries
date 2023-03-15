@@ -3,9 +3,7 @@ const activities = express.Router();
 const { Country, Activity } = require("../db");
 
 const {
-  getTotalCountryData,
-  getSpecificData,
-  filterByName,
+  createActivity,
   getActivitiesDB,
 } = require("../controllerfuncs/controllerfuncs");
 
@@ -24,24 +22,17 @@ activities.post("/", async (req, res) => {
   const { name, difficulty, duration, season, countryId } = req.body;
 
   try {
-    const country = await Country.findByPk(countryId);
-
-    if (!country) {
-      return res.status(404).send("Country not found");
-    }
-
-    const activity = await Activity.findOrCreate({
+    const activity = await createActivity(
       name,
       difficulty,
       duration,
       season,
-      countryId,
-    });
-
-    return res.json(activity);
+      countryId
+    );
+    res.json(activity);
   } catch (err) {
     console.error(err);
-    return res.status(500).send("Internal Server Error");
+    res.status(500).send("Internal Server Error");
   }
 });
 
