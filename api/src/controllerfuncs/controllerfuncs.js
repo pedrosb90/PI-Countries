@@ -77,8 +77,6 @@ async function filterByName(name) {
     });
     return filteredCountries;
   }
-
-  return countries;
 }
 
 module.exports = {

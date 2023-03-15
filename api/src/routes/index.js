@@ -6,7 +6,7 @@ const countryname = require("./countryname");
 const router = Router();
 
 router.use("/countries", countries);
-router.use("/countries/activities", activities);
-router.use("/countries?name=", countryname);
+router.use("/activities", activities);
+router.use("/", countryname);
 
 module.exports = router;
