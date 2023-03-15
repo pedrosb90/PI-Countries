@@ -27,7 +27,7 @@ activities.post("/", async (req, res) => {
       difficulty,
       duration,
       season,
-      countryId
+      countryId.toUpperCase()
     );
     res.json(activity);
   } catch (err) {

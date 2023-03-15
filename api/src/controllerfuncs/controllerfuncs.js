@@ -9,6 +9,12 @@ async function getTotalCountryData() {
 
   const countryData = await Promise.all(
     totalCountryData.data.map(async (m) => {
+      const existingCountry = await Country.findOne({
+        where: { countryId: m.cca3 },
+      });
+      if (existingCountry) {
+        return existingCountry;
+      }
       const country = await Country.create({
         countryId: m.cca3,
         name: m.name.common,
@@ -22,6 +28,7 @@ async function getTotalCountryData() {
       return country;
     })
   );
+  console.log(countryData);
   return countryData;
 }
 getTotalCountryData()
