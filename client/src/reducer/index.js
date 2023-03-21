@@ -14,6 +14,7 @@ const initialState = {
   countries: [],
   filteredCountries: [],
   activities: [],
+  countryData: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -45,7 +46,7 @@ const rootReducer = (state = initialState, action) => {
       });
       return {
         ...state,
-        countryDetail: countryById,
+        countryData: countryById,
       };
 
     case POST_ACTIVITY:

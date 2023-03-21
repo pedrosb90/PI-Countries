@@ -31,7 +31,7 @@ export const getByName = (name) => {
 export const getById = (countryId) => {
   return async function (dispatch) {
     const detail = await axios.get(
-      `http://localhost:3001/countries/` + countryId
+      `http://localhost:3001/countries/${countryId}`
     );
 
     dispatch({ type: GET_BY_ID, payload: detail.data });
