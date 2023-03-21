@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getById } from "../actions";
@@ -7,36 +7,44 @@ import Activity from "./Activity";
 
 const CountryDetail = () => {
   const { countryId } = useParams();
-  const countryData = useSelector((state) => state.countries);
+
+  const country = useSelector((state) => state.country);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getById(countryId));
+    const fetchCountry = async () => {
+      try {
+        await dispatch(getById(countryId));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchCountry();
   }, [dispatch, countryId]);
+
+  if (!country) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
       <h1>Detail</h1>
-      {countryData ? (
+      <h2 className="card-text">{country.name}</h2>
+      <p className="card-title">ID: {country.countryId}</p>
+      <img className="card-img" src={country.flag} alt="Country Flag" />
+      <p className="card-text">Continent: {country.continent}</p>
+      <p className="card-text">Capital: {country.capital}</p>
+      <p className="card-text">Subregion: {country.subregion}</p>
+      <p className="card-text">Area: {country.area}</p>
+      <p className="card-text">Population: {country.population}</p>
+
+      {country.activities && country.activities.length > 0 && (
         <div>
-          <h2 className="card-text">{countryData.name}</h2>
-          <p className="card-title">ID: {countryData.countryId}</p>
-          <img className="card-img" src={countryData.flag} alt="Country Flag" />
-          <p className="card-text">Continent: {countryData.continent}</p>
-          <p className="card-text">Capital: {countryData.capital}</p>
-          <p className="card-text">Subregion: {countryData.subregion}</p>
-          <p className="card-text">Area: {countryData.area}</p>
-          <p className="card-text">Population: {countryData.population}</p>
-          <div>
-            {countryData.activities && countryData.activities.length > 0
-              ? countryData.activities.map((a) => (
-                  <Activity key={a.name} a={a} />
-                ))
-              : null}
-          </div>
+          {country.activities.map((a) => (
+            <Activity key={a.name} a={a} />
+          ))}
         </div>
-      ) : (
-        <div>Loading...</div>
       )}
     </div>
   );

@@ -6,7 +6,6 @@ import { getAllCountries, getById } from "../actions";
 function CountryCard() {
   const countries = useSelector((state) => state.countries);
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getAllCountries());
   }, [dispatch]);

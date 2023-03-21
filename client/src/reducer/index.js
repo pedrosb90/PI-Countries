@@ -14,7 +14,7 @@ const initialState = {
   countries: [],
   filteredCountries: [],
   activities: [],
-  countryData: [],
+  country: null,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -23,7 +23,6 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         countries: action.payload,
-        filteredCountries: action.payload,
       };
     case CREATE_ACTIVITY:
       return {
@@ -41,12 +40,9 @@ const rootReducer = (state = initialState, action) => {
         filteredCountries: filteredByName,
       };
     case GET_BY_ID:
-      const countryById = state.countries.find((country) => {
-        return country.countryId === action.payload;
-      });
       return {
         ...state,
-        countryData: countryById,
+        country: action.payload, // Set the country field to the selected country
       };
 
     case POST_ACTIVITY:

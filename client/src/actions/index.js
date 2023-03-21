@@ -29,12 +29,10 @@ export const getByName = (name) => {
 };
 
 export const getById = (countryId) => {
-  return async function (dispatch) {
-    const detail = await axios.get(
-      `http://localhost:3001/countries/${countryId}`
-    );
-
-    dispatch({ type: GET_BY_ID, payload: detail.data });
+  return function (dispatch, getState) {
+    const { countries } = getState();
+    const country = countries.find((c) => c.countryId === countryId);
+    dispatch({ type: GET_BY_ID, payload: country });
   };
 };
 
