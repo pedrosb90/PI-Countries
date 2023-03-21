@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <button>Home</button>
       <Route exact path="/home" component={Home} />
-      <Route path="/countrydetail" component={CountryDetail} />
+      <Route exact path="/countries/:countryId" component={CountryDetail} />
       <Route path="/createactivity" component={ActivityCreate} />
       <br />
       <img src={image} alt="pic" />

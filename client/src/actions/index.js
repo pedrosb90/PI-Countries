@@ -10,8 +10,9 @@ export const ORDER_ALPHABET = "ORDER_ALPHABET";
 export const DELETE_ACTIVITY = "DELETE_ACTIVITY";
 
 export const getAllCountries = () => {
-  return (dispatch) => {
-    dispatch({ type: GET_ALL_COUNTRIES });
+  return async function (dispatch) {
+    const countries = await axios.get(`http://localhost:3001/countries`);
+    dispatch({ type: GET_ALL_COUNTRIES, payload: countries.data });
   };
 };
 
@@ -27,9 +28,13 @@ export const getByName = (name) => {
   };
 };
 
-export const getById = (id) => {
-  return (dispatch) => {
-    dispatch({ type: GET_BY_ID, payload: id });
+export const getById = (countryId) => {
+  return async function (dispatch) {
+    const detail = await axios.get(
+      `http://localhost:3001/countries/` + countryId
+    );
+
+    dispatch({ type: GET_BY_ID, payload: detail.data });
   };
 };
 

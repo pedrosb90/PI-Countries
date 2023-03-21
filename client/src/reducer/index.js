@@ -41,12 +41,13 @@ const rootReducer = (state = initialState, action) => {
       };
     case GET_BY_ID:
       const countryById = state.countries.find((country) => {
-        return country.id === action.payload;
+        return country.countryId === action.payload;
       });
       return {
         ...state,
-        filteredCountries: [countryById],
+        countryDetail: countryById,
       };
+
     case POST_ACTIVITY:
       return {
         ...state,
