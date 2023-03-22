@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getById } from "../actions";
-import Activity from "./Activity";
+import Activities from "./Activities";
 
 const CountryDetail = () => {
   const { countryId } = useParams();
@@ -30,19 +30,19 @@ const CountryDetail = () => {
   return (
     <div>
       <h1>Detail</h1>
-      <h2 className="card-text">{country.name}</h2>
-      <p className="card-title">ID: {country.countryId}</p>
+      <h2 className="cardtext">{country.name}</h2>
+      <p className="cardtitle">ID: {country.countryId}</p>
       <img className="card-img" src={country.flag} alt="Country Flag" />
-      <p className="card-text">Continent: {country.continent}</p>
-      <p className="card-text">Capital: {country.capital}</p>
-      <p className="card-text">Subregion: {country.subregion}</p>
-      <p className="card-text">Area: {country.area}</p>
-      <p className="card-text">Population: {country.population}</p>
+      <p className="cardtext">Continent: {country.continent}</p>
+      <p className="cardtext">Capital: {country.capital}</p>
+      <p className="cardtext">Subregion: {country.subregion}</p>
+      <p className="cardtext">Area: {country.area}</p>
+      <p className="cardtext">Population: {country.population}</p>
 
       {country.activities && country.activities.length > 0 && (
         <div>
           {country.activities.map((a) => (
-            <Activity key={a.name} a={a} />
+            <Activities key={a.name} a={a} />
           ))}
         </div>
       )}

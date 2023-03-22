@@ -6,13 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllCountries } from "../actions";
 
 const Cards = () => {
-  const countries = useSelector((state) => state.countries);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getAllCountries());
-  }, [dispatch]);
-
   return (
     <div>
       <h1> Estoy en Country Card List: </h1>

@@ -1,6 +1,6 @@
 import axios from "axios";
 export const GET_ALL_COUNTRIES = "GET_ALL_COUNTRIES";
-export const CREATE_ACTIVITY = "CREATE_ACTIVITY";
+export const GET_ACTIVITIES = "GET_ACTIVITIES";
 export const GET_BY_NAME = "GET_BY_NAME";
 export const GET_BY_ID = "GET_BY_ID";
 export const POST_ACTIVITY = "POST_ACTIVITY";
@@ -16,9 +16,10 @@ export const getAllCountries = () => {
   };
 };
 
-export const createActivity = (activity) => {
-  return (dispatch) => {
-    dispatch({ type: CREATE_ACTIVITY, payload: activity });
+export const getActivities = (activity) => {
+  return async function (dispatch) {
+    const activities = await axios.get(`http://localhost:3001/activities`);
+    dispatch({ type: GET_ACTIVITIES, payload: activities.data });
   };
 };
 

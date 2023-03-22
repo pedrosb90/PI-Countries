@@ -1,6 +1,6 @@
 import {
   GET_ALL_COUNTRIES,
-  CREATE_ACTIVITY,
+  GET_ACTIVITIES,
   GET_BY_NAME,
   GET_BY_ID,
   POST_ACTIVITY,
@@ -24,11 +24,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         countries: action.payload,
       };
-    case CREATE_ACTIVITY:
+    case GET_ACTIVITIES:
       return {
         ...state,
-        activities: [...state.activities, action.payload],
+        activities: [...state.activities, ...action.payload],
       };
+
     case GET_BY_NAME:
       const filteredByName = state.countries.filter((country) => {
         return country.name
