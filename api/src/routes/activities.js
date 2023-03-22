@@ -4,13 +4,13 @@ const { Country, Activity } = require("../db");
 
 const {
   createActivity,
-  getActivitiesDB,
+  getActivities,
 } = require("../controllerfuncs/controllerfuncs");
 
 activities.get("/", async (req, res) => {
   try {
-    const activities = await getActivitiesDB();
-
+    const activities = await getActivities();
+    console.log(activities);
     res.status(200).json(activities);
   } catch (err) {
     console.error(err);
@@ -37,7 +37,7 @@ activities.post("/", async (req, res) => {
   }
 
   const validSeasons = ["spring", "summer", "fall", "winter"];
-  if (!validSeasons.includes(season)) {
+  if (!validSeasons.includes(season.toLowerCase())) {
     res.status(400).send("Invalid season");
     return;
   }

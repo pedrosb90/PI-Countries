@@ -61,30 +61,34 @@ async function getSpecificData(idPais) {
   return idDatafound;
 }
 
-async function getActivitiesDB(countryId, activities) {
+async function getActivities(countryId) {
   try {
-    const activityRecords = [];
+    let where = {};
 
-    for (const activity of activities) {
-      const [activityRecord, created] = await Activity.findOrCreate({
-        where: { name: activity.name },
-        defaults: {
-          difficulty: activity.difficulty,
-          duration: activity.duration,
-          season: activity.season,
-          countryId: countryId,
-        },
-      });
-
-      activityRecords.push(activityRecord);
+    if (countryId && !isNaN(countryId)) {
+      where.countryId = parseInt(countryId);
     }
 
-    return activityRecords;
+    const activities = await Activity.findAll({
+      where,
+      include: [{ model: Country }],
+    });
+
+    return activities.map((activity) => {
+      return {
+        name: activity.name,
+        difficulty: activity.difficulty,
+        duration: activity.duration,
+        season: activity.season,
+        country: activity.country ? activity.country.name : null,
+      };
+    });
   } catch (err) {
     console.log(err);
     throw new Error("Failed to get activities from database");
   }
 }
+
 async function createActivity(name, difficulty, duration, season, countryId) {
   try {
     const country = await Country.findByPk(countryId);
@@ -137,7 +141,7 @@ async function filterByName(name) {
 module.exports = {
   getTotalCountryData,
   getSpecificData,
-  getActivitiesDB,
+  getActivities,
   filterByName,
   createActivity,
 };
