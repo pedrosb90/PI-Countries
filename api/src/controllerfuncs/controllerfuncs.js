@@ -66,7 +66,7 @@ async function getActivities(countryId) {
     let where = {};
 
     if (countryId && !isNaN(countryId)) {
-      where.countryId = parseInt(countryId);
+      where.countryName = countryId;
     }
 
     const activities = await Activity.findAll({
@@ -80,7 +80,7 @@ async function getActivities(countryId) {
         difficulty: activity.difficulty,
         duration: activity.duration,
         season: activity.season,
-        country: activity.country ? activity.country.name : null,
+        countryName: activity.countryName ? activity.countryName : null, // using countryName field instead of country.id
       };
     });
   } catch (err) {
@@ -88,6 +88,7 @@ async function getActivities(countryId) {
     throw new Error("Failed to get activities from database");
   }
 }
+
 async function createActivity(name, difficulty, duration, season, countryName) {
   try {
     const country = await Country.findOne({
