@@ -88,11 +88,11 @@ async function getActivities(countryId) {
     throw new Error("Failed to get activities from database");
   }
 }
-
-async function createActivity(name, difficulty, duration, season, countryId) {
+async function createActivity(name, difficulty, duration, season, countryName) {
   try {
-    const country = await Country.findByPk(countryId);
-    console.log(country);
+    const country = await Country.findOne({
+      where: { name: countryName },
+    });
 
     if (!country) {
       throw new Error("Country not found");
@@ -103,7 +103,7 @@ async function createActivity(name, difficulty, duration, season, countryId) {
       difficulty,
       duration,
       season,
-      countryId,
+      countryName,
     });
 
     return activity;

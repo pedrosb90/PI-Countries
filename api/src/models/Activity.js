@@ -20,16 +20,19 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      countryName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
     },
     { timestamps: false }
   );
 
   Activity.associate = (models) => {
-    Activity.belongsTo(models.Country, {
-      foreignKey: {
-        field: "country_id",
-        allowNull: false,
-      },
+    Activity.belongsToMany(models.Country, {
+      through: "CountryActivities",
+      foreignKey: "activity_id",
+      otherKey: "country_id",
     });
   };
 

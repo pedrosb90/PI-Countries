@@ -19,19 +19,21 @@ activities.get("/", async (req, res) => {
 });
 
 activities.post("/", async (req, res) => {
-  const { name, difficulty, duration, season, countryId } = req.body;
+  const { name, difficulty, duration, season, countryName } = req.body;
 
   if (typeof name !== "string" || name.trim().length === 0) {
     res.status(400).send("Invalid name");
     return;
   }
 
-  if (typeof difficulty !== "number" || difficulty < 1 || difficulty > 5) {
+  const difficultyValue = parseInt(difficulty);
+  if (isNaN(difficultyValue) || difficultyValue < 1 || difficultyValue > 5) {
     res.status(400).send("Invalid difficulty");
     return;
   }
 
-  if (typeof duration !== "number" || duration < 0) {
+  const durationValue = parseInt(duration);
+  if (isNaN(durationValue) || durationValue < 0) {
     res.status(400).send("Invalid duration");
     return;
   }
@@ -42,15 +44,13 @@ activities.post("/", async (req, res) => {
     return;
   }
 
-  const uppercasedCountryId = countryId.toUpperCase();
-
   try {
     const activityRecord = await createActivity(
       name,
-      difficulty,
-      duration,
+      difficultyValue,
+      durationValue,
       season,
-      uppercasedCountryId
+      countryName
     );
 
     res.json(activityRecord);

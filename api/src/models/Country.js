@@ -21,7 +21,6 @@ module.exports = (sequelize) => {
           notEmpty: true,
         },
       },
-
       capital: {
         type: DataTypes.STRING,
         allowNull: true,
@@ -44,6 +43,13 @@ module.exports = (sequelize) => {
     },
     { timestamps: false }
   );
+
+  Country.associate = (models) => {
+    Country.belongsToMany(models.Activity, {
+      through: "CountryActivities",
+      foreignKey: "countryId",
+    });
+  };
 
   return Country;
 };
