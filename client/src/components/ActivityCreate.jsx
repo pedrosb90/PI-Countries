@@ -1,34 +1,48 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { postActivity } from "../actions/index";
+import { postActivity } from "../actions/";
 
 function ActivityCreate() {
   const [activity, setActivity] = useState({
     name: "",
-    difficulty: "",
-    duration: "",
+    difficulty: 0,
+    duration: 0,
     season: "",
-    countries: "",
+    countryName: "",
   });
 
   const dispatch = useDispatch();
 
-  const handleChange = (event) => {
+  function handleChange(event) {
+    const name = event.target.name;
+    const value = event.target.value;
+
     setActivity({
       ...activity,
-      [event.target.name]: event.target.value,
+      [name]: value.charAt(0).toUpperCase() + value.slice(1),
     });
-  };
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(postActivity(activity));
+
+    const difficulty = parseInt(activity.difficulty);
+    const duration = parseInt(activity.duration);
+
+    const newActivity = {
+      ...activity,
+      difficulty,
+      duration,
+    };
+
+    dispatch(postActivity(newActivity));
+
     setActivity({
       name: "",
-      difficulty: "",
-      duration: "",
+      difficulty: 0,
+      duration: 0,
       season: "",
-      countries: "",
+      countryName: "",
     });
   };
 
@@ -82,12 +96,12 @@ function ActivityCreate() {
           <option value="spring">Spring</option>
         </select>
 
-        <label className="countries">Select/Add Countries:</label>
+        <label className="country">Country Name:</label>
         <input
           type="text"
-          id="countries"
-          name="countries"
-          value={activity.countries}
+          id="countryName"
+          name="countryName"
+          value={activity.countryName}
           onChange={handleChange}
         />
 

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getActivities } from "../actions";
+import { getActivities, resetActivities } from "../actions";
 
 function Activities() {
   const dispatch = useDispatch();
@@ -8,6 +8,10 @@ function Activities() {
 
   useEffect(() => {
     dispatch(getActivities());
+
+    return () => {
+      dispatch(resetActivities());
+    };
   }, [dispatch]);
   console.log(activities);
 
@@ -20,7 +24,7 @@ function Activities() {
           <p>Difficulty: {activity.difficulty}</p>
           <p>Duration: {activity.duration} min</p>
           <p>Season: {activity.season}</p>
-          <p>Country: {activity.country}</p>
+          <p>Country: {activity.countryName}</p>
         </div>
       ))}
     </div>

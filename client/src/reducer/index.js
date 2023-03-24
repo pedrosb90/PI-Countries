@@ -8,6 +8,7 @@ import {
   FILTER_BY_ACTIVITY,
   ORDER_ALPHABET,
   DELETE_ACTIVITY,
+  RESET_ACTIVITIES,
 } from "../actions/index";
 
 const initialState = {
@@ -28,6 +29,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         activities: [...state.activities, ...action.payload],
+      };
+    case RESET_ACTIVITIES:
+      return {
+        ...state,
+        activities: [],
       };
 
     case GET_BY_NAME:
@@ -51,6 +57,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         activities: [...state.activities, action.payload],
       };
+
     case SORT_BY_CONTINENT:
       const sortedByContinent = state.countries.filter((country) => {
         return country.region === action.payload;

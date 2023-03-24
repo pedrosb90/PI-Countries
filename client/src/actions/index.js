@@ -8,6 +8,7 @@ export const SORT_BY_CONTINENT = "SORT_BY_CONTINENT";
 export const FILTER_BY_ACTIVITY = "FILTER_BY_ACTIVITY";
 export const ORDER_ALPHABET = "ORDER_ALPHABET";
 export const DELETE_ACTIVITY = "DELETE_ACTIVITY";
+export const RESET_ACTIVITIES = "RESET_ACTIVITIES";
 
 export const getAllCountries = () => {
   return async function (dispatch) {
@@ -24,8 +25,14 @@ export const getActivities = (activity) => {
 };
 
 export const getByName = (name) => {
-  return (dispatch) => {
-    dispatch({ type: GET_BY_NAME, payload: name });
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`http://localhost:3001?name=${name}`);
+      const data = response.data;
+      dispatch({ type: GET_BY_NAME, payload: data });
+    } catch (error) {
+      console.error(error);
+    }
   };
 };
 
@@ -38,8 +45,23 @@ export const getById = (countryId) => {
 };
 
 export const postActivity = (activity) => {
-  return (dispatch) => {
-    dispatch({ type: POST_ACTIVITY, payload: activity });
+  return async (dispatch) => {
+    console.log("Activity before POST request:", activity);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/activities",
+        activity
+      );
+      dispatch({ type: POST_ACTIVITY, payload: response.data });
+    } catch (error) {
+      console.error("Error posting activity: ", error);
+    }
+  };
+};
+export const resetActivities = () => {
+  return {
+    type: RESET_ACTIVITIES,
   };
 };
 
