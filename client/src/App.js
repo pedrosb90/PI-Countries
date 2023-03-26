@@ -1,5 +1,6 @@
 import "./App.css";
-import { Route, Link } from "react-router-dom";
+import { Route, Link, Redirect } from "react-router-dom";
+import { useState } from "react";
 import Home from "./components/pages/Home";
 import CountryDetail from "./components/CountryDetail";
 import FilteredCards from "./components/pages/FilteredCards";
@@ -17,8 +18,7 @@ function App() {
       <Route path="/countries/:countryId" component={CountryDetail} />
       <Route path="/createactivity" component={ActivityCreate} />
       <Route path="/activities" component={Activities} />
-      <Route path="/filteredcountry" component={FilteredCards} />
-
+      <Route exact path="/filteredcountry" component={FilteredCards} />
       <img src={image} alt="pic" />
     </div>
   );

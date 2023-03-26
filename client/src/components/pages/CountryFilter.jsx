@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import SearchBar from "./SearchBar";
-import FilteredCards from "./FilteredCards";
 import { getAllCountries } from "../../actions";
 
 function CountryFilter() {
@@ -43,9 +42,6 @@ function CountryFilter() {
         onReset={handleReset}
         searchInput={searchInput}
       />
-      <Route path="/filteredcountry">
-        <FilteredCards filteredCountries={filteredCountries} />
-      </Route>
     </div>
   );
 }

@@ -17,7 +17,7 @@ function SearchBar(props) {
     }
   };
   const handleFilterCountries = () => {
-    dispatch(filterCountries(searchInput)); // use dispatch here
+    dispatch(filterCountries(searchInput));
   };
 
   const handleResetClick = () => {

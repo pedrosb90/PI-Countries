@@ -1,24 +1,31 @@
-import React, { useState, useEffect } from "react";
-import Cards from "../Cards";
-import SearchBar from "./SearchBar";
+import React, { useState, useEffect, memo } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllCountries, filterCountries } from "../../actions";
 import CountryFilter from "./CountryFilter";
+import { filterCountries, getAllCountries } from "../../actions";
+import FilteredCards from "../../components/pages/FilteredCards";
+import CountryCard from "../CountryCard";
 
 function Home() {
   const [searchInput, setSearchInput] = useState("");
+  const [filter, setFilter] = useState([]);
+  const dispatch = useDispatch();
+
   const filteredCountries = useSelector((state) => state.filteredCountries);
   const countries = useSelector((state) => state.countries);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllCountries());
   }, [dispatch]);
 
   useEffect(() => {
-    // Update the filtered countries whenever the search input changes
-    dispatch(filterCountries(searchInput));
+    if (searchInput !== "") {
+      dispatch(filterCountries(searchInput));
+    }
   }, [searchInput, dispatch]);
+
+  useEffect(() => {
+    setFilter(filteredCountries);
+  }, [filteredCountries]);
 
   return (
     <div>
@@ -36,10 +43,14 @@ function Home() {
         {" "}
         Filter By Tourism Activity{" "}
       </button>
-      <h3> Countries </h3>
-      <Cards
-        countries={filteredCountries.length > 0 ? filteredCountries : countries}
-      />
+      {filter.length > 0 ? (
+        <FilteredCards />
+      ) : (
+        <>
+          <h3> Countries </h3>
+          <CountryCard />
+        </>
+      )}
     </div>
   );
 }
