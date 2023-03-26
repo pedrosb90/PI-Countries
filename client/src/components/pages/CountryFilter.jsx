@@ -1,0 +1,53 @@
+import React, { useState, useEffect } from "react";
+import { Route } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import SearchBar from "./SearchBar";
+import FilteredCards from "./FilteredCards";
+import { getAllCountries } from "../../actions";
+
+function CountryFilter() {
+  const [searchInput, setSearchInput] = useState("");
+  const dispatch = useDispatch();
+  const countries = useSelector((state) => {
+    return state.countries;
+  });
+  const [filteredCountries, setFilteredCountries] = useState([]);
+
+  useEffect(() => {
+    dispatch(getAllCountries());
+  }, [dispatch]);
+
+  useEffect(() => {
+    const filtered = countries.filter(
+      (country) =>
+        country.name &&
+        country.name.common &&
+        country.name.common.toLowerCase().includes(searchInput.toLowerCase())
+    );
+    setFilteredCountries(filtered);
+  }, [countries, searchInput]);
+
+  const handleSearchInput = (input) => {
+    setSearchInput(input);
+  };
+
+  const handleReset = () => {
+    setSearchInput("");
+    setFilteredCountries([]);
+  };
+
+  return (
+    <div>
+      <SearchBar
+        onSearchInput={handleSearchInput}
+        onReset={handleReset}
+        searchInput={searchInput}
+      />
+      <Route path="/filteredcountry">
+        <FilteredCards filteredCountries={filteredCountries} />
+      </Route>
+    </div>
+  );
+}
+
+export default CountryFilter;

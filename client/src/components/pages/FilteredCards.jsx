@@ -1,23 +1,22 @@
 import React from "react";
-import CountryCard from "../../components/CountryCard";
+import CountryCard from "../CountryCard";
 
-function FilteredCards({ countries }) {
+function FilteredCards(props) {
+  console.log(props); // Add this line
+  const { filteredCountries } = props;
+
+  if (filteredCountries.length === 0) {
+    return <div>No countries found.</div>;
+  }
+
   return (
     <div>
-      {countries.length > 0 ? (
-        countries.map((country) => (
-          <CountryCard
-            key={country.alpha3Code}
-            name={country.name}
-            flag={country.flag}
-            population={country.population}
-            region={country.region}
-            capital={country.capital}
-          />
-        ))
-      ) : (
-        <p>No countries found</p>
-      )}
+      <h1>Toy adentro?</h1>
+      <div>
+        {filteredCountries.map((country) => (
+          <CountryCard key={country.alpha3Code} country={country} />
+        ))}
+      </div>
     </div>
   );
 }

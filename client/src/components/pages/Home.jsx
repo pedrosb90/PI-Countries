@@ -3,6 +3,7 @@ import Cards from "../Cards";
 import SearchBar from "./SearchBar";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllCountries, filterCountries } from "../../actions";
+import CountryFilter from "./CountryFilter";
 
 function Home() {
   const [searchInput, setSearchInput] = useState("");
@@ -19,28 +20,10 @@ function Home() {
     dispatch(filterCountries(searchInput));
   }, [searchInput, dispatch]);
 
-  const handleSearchInput = (value) => {
-    setSearchInput(value);
-  };
-
-  const handleSearch = () => {
-    dispatch(filterCountries(searchInput));
-  };
-
-  const handleReset = () => {
-    setSearchInput("");
-    dispatch(filterCountries(""));
-  };
-  console.log(filterCountries);
   return (
     <div>
       <h1>Henry Countries</h1>
-      <SearchBar
-        searchInput={searchInput}
-        onSearchInput={handleSearchInput}
-        onSearch={handleSearch}
-        onReset={handleReset}
-      />
+      <CountryFilter />
       <br />
       <label>Sort by Continent: </label>
       <input type="text" name="filter" placeholder="Continent Name.." />

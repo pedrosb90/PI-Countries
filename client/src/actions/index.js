@@ -66,10 +66,17 @@ export const resetActivities = () => {
   };
 };
 export const filterCountries = (searchInput) => (dispatch, getState) => {
+  console.log("filterCountries called");
   const allCountries = getState().countries;
-  const filteredCountries = allCountries.filter((country) =>
-    country.name.toLowerCase().includes(searchInput.toLowerCase())
-  );
+  console.log("allCountries:", allCountries);
+  const filteredCountries = allCountries.filter((country) => {
+    const isMatch = country.name
+      .toLowerCase()
+      .includes(searchInput.toLowerCase());
+    console.log(`Country ${country.name} is${isMatch ? "" : " not"} a match`);
+    return isMatch;
+  });
+  console.log("filteredCountries:", filteredCountries);
   dispatch({
     type: FILTER_COUNTRIES,
     payload: filteredCountries,

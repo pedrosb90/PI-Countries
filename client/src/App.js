@@ -2,6 +2,7 @@ import "./App.css";
 import { Route, Link } from "react-router-dom";
 import Home from "./components/pages/Home";
 import CountryDetail from "./components/CountryDetail";
+import FilteredCards from "./components/pages/FilteredCards";
 import Activities from "./components/Activities";
 import ActivityCreate from "./components/ActivityCreate";
 import image from "/Users/pedro/Desktop/Henry/P INDIVIDUALES/PI-Countries-main/client/src/binary globe image herny pi.avif";
@@ -16,6 +17,7 @@ function App() {
       <Route path="/countries/:countryId" component={CountryDetail} />
       <Route path="/createactivity" component={ActivityCreate} />
       <Route path="/activities" component={Activities} />
+      <Route path="/filteredcountry" component={FilteredCards} />
 
       <img src={image} alt="pic" />
     </div>
