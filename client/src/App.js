@@ -9,7 +9,9 @@ import image from "/Users/pedro/Desktop/Henry/P INDIVIDUALES/PI-Countries-main/c
 function App() {
   return (
     <div className="App">
-      <button>Home</button>
+      <Link to="/home">
+        <button>Home</button>
+      </Link>
       <Route exact path="/home" component={Home} />
       <Route path="/countries/:countryId" component={CountryDetail} />
       <Route path="/createactivity" component={ActivityCreate} />

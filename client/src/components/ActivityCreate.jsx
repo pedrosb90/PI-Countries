@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { postActivity } from "../actions/";
+import { Link } from "react-router-dom";
 
 function ActivityCreate() {
   const [activity, setActivity] = useState({
@@ -107,6 +108,9 @@ function ActivityCreate() {
 
         <button type="submit">Create Activity</button>
       </form>
+      <Link to="/activities">
+        <button>Activities</button>
+      </Link>
     </div>
   );
 }

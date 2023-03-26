@@ -4,11 +4,12 @@ export const GET_ACTIVITIES = "GET_ACTIVITIES";
 export const GET_BY_NAME = "GET_BY_NAME";
 export const GET_BY_ID = "GET_BY_ID";
 export const POST_ACTIVITY = "POST_ACTIVITY";
-export const SORT_BY_CONTINENT = "SORT_BY_CONTINENT";
-export const FILTER_BY_ACTIVITY = "FILTER_BY_ACTIVITY";
-export const ORDER_ALPHABET = "ORDER_ALPHABET";
+export const SORT_COUNTRIES_BY_CONTINENT = "SORT_COUNTRIES_BY_CONTINENT";
+export const SORT_COUNTRIES_BY_ACTIVITY = "SORT_COUNTRIES_BY_ACTIVITY";
+export const SORT_COUNTRIES_ALPHABETICALLY = "SORT_COUNTRIES_ALPHABETICALLY";
 export const DELETE_ACTIVITY = "DELETE_ACTIVITY";
 export const RESET_ACTIVITIES = "RESET_ACTIVITIES";
+export const FILTER_COUNTRIES = "FILTER_COUNTRIES";
 
 export const getAllCountries = () => {
   return async function (dispatch) {
@@ -64,25 +65,34 @@ export const resetActivities = () => {
     type: RESET_ACTIVITIES,
   };
 };
-
-export const sortByContinent = (continent) => {
-  return (dispatch) => {
-    dispatch({ type: SORT_BY_CONTINENT, payload: continent });
-  };
+export const filterCountries = (searchInput) => (dispatch, getState) => {
+  const allCountries = getState().countries;
+  const filteredCountries = allCountries.filter((country) =>
+    country.name.toLowerCase().includes(searchInput.toLowerCase())
+  );
+  dispatch({
+    type: FILTER_COUNTRIES,
+    payload: filteredCountries,
+  });
 };
 
-export const filterByActivity = (activity) => {
-  return (dispatch) => {
-    dispatch({ type: FILTER_BY_ACTIVITY, payload: activity });
+//pendientes
+
+export const sortCountriesByActivity = (activity) => ({
+  type: SORT_COUNTRIES_BY_ACTIVITY,
+  payload: activity,
+});
+
+export const sortCountriesByContinent = (continent) => ({
+  type: SORT_COUNTRIES_BY_CONTINENT,
+  payload: continent,
+});
+
+export const sortCountriesAlphabetically = () => {
+  return {
+    type: SORT_COUNTRIES_ALPHABETICALLY,
   };
 };
-
-export const orderAlphabet = (order) => {
-  return (dispatch) => {
-    dispatch({ type: ORDER_ALPHABET, payload: order });
-  };
-};
-
 export const deleteActivity = (id) => {
   return (dispatch) => {
     dispatch({ type: DELETE_ACTIVITY, payload: id });

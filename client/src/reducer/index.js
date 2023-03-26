@@ -4,9 +4,10 @@ import {
   GET_BY_NAME,
   GET_BY_ID,
   POST_ACTIVITY,
-  SORT_BY_CONTINENT,
-  FILTER_BY_ACTIVITY,
-  ORDER_ALPHABET,
+  SORT_COUNTRIES_BY_CONTINENT,
+  SORT_COUNTRIES_BY_ACTIVITY,
+  SORT_COUNTRIES_ALPHABETICALLY,
+  FILTER_COUNTRIES,
   DELETE_ACTIVITY,
   RESET_ACTIVITIES,
 } from "../actions/index";
@@ -16,6 +17,7 @@ const initialState = {
   filteredCountries: [],
   activities: [],
   country: null,
+  sortedCountries: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -49,7 +51,7 @@ const rootReducer = (state = initialState, action) => {
     case GET_BY_ID:
       return {
         ...state,
-        country: action.payload, // Set the country field to the selected country
+        country: action.payload,
       };
 
     case POST_ACTIVITY:
@@ -58,36 +60,40 @@ const rootReducer = (state = initialState, action) => {
         activities: [...state.activities, action.payload],
       };
 
-    case SORT_BY_CONTINENT:
-      const sortedByContinent = state.countries.filter((country) => {
-        return country.region === action.payload;
+    //pendientes
+
+    case SORT_COUNTRIES_BY_CONTINENT:
+      const continent = action.payload;
+      const ordered = state.countries.filter((c) => c.continent === continent);
+      return {
+        ...state,
+        sortedCountries: ordered,
+      };
+
+    case SORT_COUNTRIES_BY_ACTIVITY:
+      const activity = action.payload;
+      const actsorted = state.countries.filter((c) =>
+        c.activities.includes(activity)
+      );
+      return {
+        ...state,
+        sortedCountries: actsorted,
+      };
+
+    case SORT_COUNTRIES_ALPHABETICALLY:
+      const sorted = state.countries.sort((a, b) => {
+        return a.name.localeCompare(b.name);
       });
       return {
         ...state,
-        filteredCountries: sortedByContinent,
+        sortedCountries: sorted,
       };
-    case FILTER_BY_ACTIVITY:
-      const filteredByActivity = state.countries.filter((country) => {
-        return country.activities.find((activity) => {
-          return activity.name === action.payload;
-        });
-      });
+    case FILTER_COUNTRIES: // New action type for filtering countries
       return {
         ...state,
-        filteredCountries: filteredByActivity,
+        filteredCountries: action.payload,
       };
-    case ORDER_ALPHABET:
-      const orderedCountries = state.filteredCountries.sort((a, b) => {
-        if (action.payload === "ASC") {
-          return a.name.localeCompare(b.name);
-        } else {
-          return b.name.localeCompare(a.name);
-        }
-      });
-      return {
-        ...state,
-        filteredCountries: orderedCountries,
-      };
+
     case DELETE_ACTIVITY:
       const activitiesAfterDelete = state.activities.filter((activity) => {
         return activity.id !== action.payload;

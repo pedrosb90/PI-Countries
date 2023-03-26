@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getActivities, resetActivities } from "../actions";
 
 function Activities() {
@@ -18,6 +19,10 @@ function Activities() {
   return (
     <div>
       <h2>Activities</h2>
+      <Link to="/createactivity">
+        <button>Create Activity</button>
+      </Link>
+      <br />
       {activities.map((activity) => (
         <div key={activity.id}>
           <h3>{activity.name}</h3>
