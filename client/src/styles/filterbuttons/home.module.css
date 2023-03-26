@@ -1,0 +1,10 @@
+.button {
+  margin-top: 20px;
+  background-color: #e033ff;
+  padding: 0.2px 8px;
+  height: min-content;
+  width: min-content;
+  border-radius: 9px;
+  border-color: white;
+  opacity: 60%;
+}

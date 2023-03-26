@@ -4,6 +4,7 @@ import CountryFilter from "./CountryFilter";
 import { filterCountries, getAllCountries } from "../../actions";
 import FilteredCards from "../../components/pages/FilteredCards";
 import CountryCard from "../CountryCard";
+import styles from "../../styles/filterbuttons/home.module.css";
 
 function Home() {
   const [searchInput, setSearchInput] = useState("");
@@ -35,11 +36,11 @@ function Home() {
       <label>Sort by Continent: </label>
       <input type="text" name="filter" placeholder="Continent Name.." />
 
-      <button type="text" name="orderAtoZ">
+      <button className={`${styles.button}`} type="text" name="orderAtoZ">
         {" "}
         Order Alphabetically{" "}
       </button>
-      <button type="text" name="activity">
+      <button className={styles.button} type="text" name="activity">
         {" "}
         Filter By Tourism Activity{" "}
       </button>

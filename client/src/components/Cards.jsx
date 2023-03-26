@@ -1,9 +1,10 @@
 import React from "react";
 import CountryCard from "./CountryCard";
+import styles from "../styles/components/cards.module.css";
 
 const Cards = ({ countries }) => {
   return (
-    <div>
+    <div className={`${styles.cards}`}>
       <div>
         {countries &&
           countries.map((country) => (
