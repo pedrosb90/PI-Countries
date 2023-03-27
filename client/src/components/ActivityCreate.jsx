@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { postActivity } from "../actions/";
 import { Link } from "react-router-dom";
+import styles from "/Users/pedro/Desktop/Henry/P INDIVIDUALES/PI-Countries-main/client/src/styles/components/activitycreate.module.css";
+import ActivitiesGo from "./pages/ActivitiesGo";
 
 function ActivityCreate() {
   const [activity, setActivity] = useState({
@@ -48,7 +50,7 @@ function ActivityCreate() {
   };
 
   return (
-    <div>
+    <div className={`${styles.center}`}>
       <form className="create-activity-form" onSubmit={handleSubmit}>
         <label className="name">Name:</label>
         <input
@@ -61,6 +63,7 @@ function ActivityCreate() {
 
         <label className="difficulty">Difficulty:</label>
         <select
+          className={`${styles.select}`}
           id="difficulty"
           name="difficulty"
           value={activity.difficulty}
@@ -85,6 +88,7 @@ function ActivityCreate() {
 
         <label className="season">Season:</label>
         <select
+          className={`${styles.select}`}
           id="season"
           name="season"
           value={activity.season}
@@ -106,11 +110,19 @@ function ActivityCreate() {
           onChange={handleChange}
         />
 
-        <button type="submit">Create Activity</button>
+        <button className={`${styles.buttonCreate}`} type="submit">
+          Create Activity
+        </button>
       </form>
+      <br />
       <Link to="/activities">
-        <button>Activities</button>
+        <ActivitiesGo />
       </Link>
+      <br />
+      <text>
+        Note: Duration must be set in minutes required to do the activity. Have
+        fun creating activities!
+      </text>
     </div>
   );
 }

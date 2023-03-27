@@ -1,0 +1,41 @@
+.button {
+  background-color: rgba(0, 128, 128, 0.5);
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 1px 1px 2px black;
+  padding: 10px 20px;
+  margin: 5px;
+  transition: all 0.3s ease;
+}
+.buttonCreate {
+  background-color: rgba(128, 0, 81, 0.5);
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 1px 1px 2px black;
+  padding: 10px 20px;
+  margin: 5px;
+  transition: all 0.3s ease;
+}
+.select {
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 2px black;
+  color: #333;
+  font-size: 16px;
+  padding: 10px 20px;
+  margin: 5px;
+  transition: all 0.3s ease;
+}
+
+.select:focus {
+  outline: none;
+  box-shadow: 1px 1px 5px rgba(0, 128, 128, 0.5);
+}
+.center {
+  text-align: center;
+}
