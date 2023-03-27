@@ -11,7 +11,7 @@ const FilteredCards = () => {
 
   return (
     <div>
-      <h1 className={`${styles.title}`}>Found Countries</h1>
+      <h1>Found Countries</h1>
       {filteredCountries.map((country) => (
         <div key={country.countryId}>
           <h2>Name: {country.name}</h2>

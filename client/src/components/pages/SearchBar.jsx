@@ -34,11 +34,19 @@ function SearchBar(props) {
         onChange={handleInputChange}
         onKeyPress={handleKeyPress}
       />
-      <button className={`${styles.button}`} onClick={handleResetClick}>
+      <button className={`${styles.buttonReset}`} onClick={handleResetClick}>
         Reset
       </button>
       <button className={`${styles.button}`} onClick={handleFilterCountries}>
-        Filter Countries
+        Find
+      </button>
+      <button className={`${styles.button}`} type="text" name="orderAtoZ">
+        {" "}
+        Sort Alphabetically{" "}
+      </button>
+      <button className={`${styles.button}`} type="text" name="population">
+        {" "}
+        Sort by Population{" "}
       </button>
     </div>
   );

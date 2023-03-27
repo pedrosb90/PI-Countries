@@ -1,6 +1,8 @@
 import React, { useState, useEffect, memo } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import CountryFilter from "./CountryFilter";
+import ActivitiesGo from "./ActivitiesGo";
 import { filterCountries, getAllCountries } from "../../actions";
 import FilteredCards from "../../components/pages/FilteredCards";
 import CountryCard from "../CountryCard";
@@ -30,21 +32,24 @@ function Home() {
 
   return (
     <div className={`${styles.center}`}>
+      <Link to="/activities">
+        <ActivitiesGo>Go to Activities</ActivitiesGo>
+      </Link>
       <h1 className={`${styles.titleMain}`}>HENY COUNTRIES</h1>
       <CountryFilter />
 
       <br />
-      <label>Sort by Continent: </label>
-      <input type="text" name="filter" placeholder="Continent Name.." />
+      <div>
+        {" "}
+        <input type="text" name="filter" placeholder="Continent Name.." />
+        <button className={`${styles.button}`}>Filter by Continent</button>
+      </div>
+      <div>
+        {" "}
+        <input type="text" name="filter" placeholder="Activity Name.." />
+        <button className={`${styles.button}`}>Filter by Activity</button>
+      </div>
 
-      <button className={`${styles.button}`} type="text" name="orderAtoZ">
-        {" "}
-        Order Countries Alphabetically{" "}
-      </button>
-      <button className={styles.button} type="text" name="activity">
-        {" "}
-        Filter By Tourism Activity{" "}
-      </button>
       {filter.length > 0 ? (
         <FilteredCards />
       ) : (
