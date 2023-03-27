@@ -1,0 +1,21 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+div {
+  display: grid;
+
+  gap: 20px;
+  padding: 20px;
+
+  background-size: cover;
+  background-position: center;
+}
+.bg {
+  background-image: url("path/to/background-/Users/pedro/Desktop/Henry/P INDIVIDUALES/PI-Countries-main/client/src/MOON_LANDSCAPE4_generated.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+}

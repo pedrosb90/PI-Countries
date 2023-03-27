@@ -6,6 +6,7 @@ export const GET_BY_ID = "GET_BY_ID";
 export const POST_ACTIVITY = "POST_ACTIVITY";
 export const SORT_COUNTRIES_BY_CONTINENT = "SORT_COUNTRIES_BY_CONTINENT";
 export const SORT_COUNTRIES_BY_ACTIVITY = "SORT_COUNTRIES_BY_ACTIVITY";
+export const SORT_COUNTRIES_BY_POPULATION = "SORT_COUNTRIES_BY_POPULATION";
 export const SORT_COUNTRIES_AZ = "SORT_COUNTRIES_AZ";
 export const DELETE_ACTIVITY = "DELETE_ACTIVITY";
 export const RESET_ACTIVITIES = "RESET_ACTIVITIES";
@@ -85,6 +86,13 @@ export const sortCountriesByContinent = (continent) => ({
   type: SORT_COUNTRIES_BY_CONTINENT,
   payload: continent,
 });
+
+export const sortCountriesByPopulation = (order) => {
+  return {
+    type: SORT_COUNTRIES_BY_POPULATION,
+    payload: order,
+  };
+};
 
 export const sortCountriesAZ = (order) => {
   return {

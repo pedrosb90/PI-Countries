@@ -10,12 +10,18 @@ const FilteredCards = () => {
 
   return (
     <div>
-      <h1>Found Countries</h1>
+      <h1 className={`${styles.title}`}>Found Countries</h1>
       {filteredCountries.map((country) => (
-        <div key={country.countryId}>
-          <h2>Name: {country.name}</h2>
-          <h2>Continent: {country.continent}</h2>
-          <img src={country.flag} alt="imgflag"></img>
+        <div className={`${styles.card}`} key={country.countryId}>
+          <h2 className={`${styles.content}`}>Name: {country.name}</h2>
+          <h2 className={`${styles.content}`}>
+            Continent: {country.continent}
+          </h2>
+          <img
+            className={`${styles.contenedorflag}`}
+            src={country.flag}
+            alt="imgflag"
+          ></img>
           <Link
             className={`${styles.button}`}
             to={`/countries/${country.countryId}`}

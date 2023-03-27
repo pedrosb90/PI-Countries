@@ -33,7 +33,7 @@ const CountryDetail = () => {
       <h2 className={`${styles.content}`}>{country.name}</h2>
       <p className={`${styles.content}`}>ID: {country.countryId}</p>
       <img
-        className={`${styles.contenedorFlag}`}
+        className={`${styles.contenedorflag}`}
         src={country.flag}
         alt="Country Flag"
       />

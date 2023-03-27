@@ -35,7 +35,7 @@ function Home() {
       <Link to="/activities">
         <ActivitiesGo>Go to Activities</ActivitiesGo>
       </Link>
-      <h1 className={`${styles.titleMain}`}>HENY COUNTRIES</h1>
+      <h1 className={`${styles.titleMain}`}>Henry Countries App</h1>
       <CountryFilter />
 
       <br />

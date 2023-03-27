@@ -9,7 +9,7 @@ import HomeButton from "./components/pages/HomeButton";
 
 function App() {
   return (
-    <div>
+    <div className="bg">
       <Link to="/home">
         <HomeButton>Home</HomeButton>
       </Link>

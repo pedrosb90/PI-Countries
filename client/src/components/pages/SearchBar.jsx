@@ -1,8 +1,10 @@
-// In SearchBar.js
-
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterCountries, sortCountriesAZ } from "../../actions/index";
+import {
+  filterCountries,
+  sortCountriesAZ,
+  sortCountriesByPopulation,
+} from "../../actions/index";
 import styles from "../../styles/filterbuttons/home.module.css";
 
 function SearchBar(props) {
@@ -53,9 +55,13 @@ function SearchBar(props) {
       <button className={`${styles.button}`} onClick={handleSortClick}>
         {`Sort Alphabetically ${sortOrder === "asc" ? "A-Z" : "Z-A"}`}
       </button>
-      <button className={`${styles.button}`} type="text" name="population">
-        {" "}
-        Sort by Population{" "}
+      <button
+        className={`${styles.button}`}
+        onClick={() => dispatch(sortCountriesByPopulation("asc"))}
+      >
+        {`Sort by Population ${
+          sortOrder === "asc" ? "(low to high)" : "(high to low)"
+        }`}
       </button>
     </div>
   );

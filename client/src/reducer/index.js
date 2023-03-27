@@ -5,6 +5,7 @@ import {
   GET_BY_ID,
   POST_ACTIVITY,
   SORT_COUNTRIES_BY_CONTINENT,
+  SORT_COUNTRIES_BY_POPULATION,
   SORT_COUNTRIES_BY_ACTIVITY,
   SORT_COUNTRIES_AZ,
   FILTER_COUNTRIES,
@@ -93,7 +94,17 @@ const rootReducer = (state = initialState, action) => {
         countries: sortedCountries,
         sortOrder: action.payload,
       };
-
+    case SORT_COUNTRIES_BY_POPULATION:
+      const sortedPop = [...state.filteredCountries].sort((a, b) => {
+        return action.payload === "asc"
+          ? a.population - b.population
+          : b.population - a.population;
+      });
+      return {
+        ...state,
+        filteredCountries: sortedPop,
+        sortOrder: action.payload,
+      };
     case DELETE_ACTIVITY:
       const activitiesAfterDelete = state.activities.filter((activity) => {
         return activity.id !== action.payload;
