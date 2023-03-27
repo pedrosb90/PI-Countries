@@ -6,7 +6,7 @@ export const GET_BY_ID = "GET_BY_ID";
 export const POST_ACTIVITY = "POST_ACTIVITY";
 export const SORT_COUNTRIES_BY_CONTINENT = "SORT_COUNTRIES_BY_CONTINENT";
 export const SORT_COUNTRIES_BY_ACTIVITY = "SORT_COUNTRIES_BY_ACTIVITY";
-export const SORT_COUNTRIES_ALPHABETICALLY = "SORT_COUNTRIES_ALPHABETICALLY";
+export const SORT_COUNTRIES_AZ = "SORT_COUNTRIES_AZ";
 export const DELETE_ACTIVITY = "DELETE_ACTIVITY";
 export const RESET_ACTIVITIES = "RESET_ACTIVITIES";
 export const FILTER_COUNTRIES = "FILTER_COUNTRIES";
@@ -76,8 +76,6 @@ export const filterCountries = (searchInput) => (dispatch, getState) => {
   });
 };
 
-//pendientes
-
 export const sortCountriesByActivity = (activity) => ({
   type: SORT_COUNTRIES_BY_ACTIVITY,
   payload: activity,
@@ -88,9 +86,10 @@ export const sortCountriesByContinent = (continent) => ({
   payload: continent,
 });
 
-export const sortCountriesAlphabetically = () => {
+export const sortCountriesAZ = (order) => {
   return {
-    type: SORT_COUNTRIES_ALPHABETICALLY,
+    type: SORT_COUNTRIES_AZ,
+    payload: order,
   };
 };
 export const deleteActivity = (id) => {

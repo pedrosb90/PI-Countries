@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import SearchBar from "./SearchBar";
 import { getAllCountries } from "../../actions";

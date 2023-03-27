@@ -6,7 +6,7 @@ import {
   POST_ACTIVITY,
   SORT_COUNTRIES_BY_CONTINENT,
   SORT_COUNTRIES_BY_ACTIVITY,
-  SORT_COUNTRIES_ALPHABETICALLY,
+  SORT_COUNTRIES_AZ,
   FILTER_COUNTRIES,
   DELETE_ACTIVITY,
   RESET_ACTIVITIES,
@@ -17,7 +17,7 @@ const initialState = {
   filteredCountries: [],
   activities: [],
   country: null,
-  sortedCountries: [],
+  sortOrder: "asc",
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -60,16 +60,6 @@ const rootReducer = (state = initialState, action) => {
         activities: [...state.activities, action.payload],
       };
 
-    //pendientes
-
-    case SORT_COUNTRIES_BY_CONTINENT:
-      const continent = action.payload;
-      const ordered = state.countries.filter((c) => c.continent === continent);
-      return {
-        ...state,
-        sortedCountries: ordered,
-      };
-
     case SORT_COUNTRIES_BY_ACTIVITY:
       const activity = action.payload;
       const actsorted = state.countries.filter((c) =>
@@ -80,18 +70,28 @@ const rootReducer = (state = initialState, action) => {
         sortedCountries: actsorted,
       };
 
-    case SORT_COUNTRIES_ALPHABETICALLY:
-      const sorted = state.countries.sort((a, b) => {
-        return a.name.localeCompare(b.name);
-      });
-      return {
-        ...state,
-        sortedCountries: sorted,
-      };
-    case FILTER_COUNTRIES: // New action type for filtering countries
+    case FILTER_COUNTRIES:
       return {
         ...state,
         filteredCountries: action.payload,
+      };
+    case SORT_COUNTRIES_AZ:
+      const order = action.payload === "asc" ? 1 : -1;
+      const sortedCountries = [...state.countries].sort((a, b) => {
+        const nameA = a.name.toUpperCase();
+        const nameB = b.name.toUpperCase();
+        if (nameA < nameB) {
+          return -1 * order;
+        }
+        if (nameA > nameB) {
+          return 1 * order;
+        }
+        return 0;
+      });
+      return {
+        ...state,
+        countries: sortedCountries,
+        sortOrder: action.payload,
       };
 
     case DELETE_ACTIVITY:

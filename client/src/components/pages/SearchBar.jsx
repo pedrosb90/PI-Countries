@@ -1,12 +1,16 @@
+// In SearchBar.js
+
 import React from "react";
-import { useDispatch } from "react-redux";
-import { filterCountries } from "../../actions/index";
+import { useDispatch, useSelector } from "react-redux";
+import { filterCountries, sortCountriesAZ } from "../../actions/index";
 import styles from "../../styles/filterbuttons/home.module.css";
 
 function SearchBar(props) {
   const { onSearchInput, onReset, searchInput } = props;
 
-  const dispatch = useDispatch(); // add this line
+  const dispatch = useDispatch();
+
+  const sortOrder = useSelector((state) => state.sortOrder);
 
   const handleInputChange = (e) => {
     onSearchInput(e.target.value);
@@ -17,12 +21,18 @@ function SearchBar(props) {
       onSearchInput(e.target.value);
     }
   };
+
   const handleFilterCountries = () => {
     dispatch(filterCountries(searchInput));
   };
 
   const handleResetClick = () => {
     onReset();
+  };
+
+  const handleSortClick = () => {
+    const newOrder = sortOrder === "asc" ? "desc" : "asc";
+    dispatch(sortCountriesAZ(newOrder));
   };
 
   return (
@@ -40,9 +50,8 @@ function SearchBar(props) {
       <button className={`${styles.button}`} onClick={handleFilterCountries}>
         Find
       </button>
-      <button className={`${styles.button}`} type="text" name="orderAtoZ">
-        {" "}
-        Sort Alphabetically{" "}
+      <button className={`${styles.button}`} onClick={handleSortClick}>
+        {`Sort Alphabetically ${sortOrder === "asc" ? "A-Z" : "Z-A"}`}
       </button>
       <button className={`${styles.button}`} type="text" name="population">
         {" "}
