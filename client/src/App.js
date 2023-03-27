@@ -7,10 +7,10 @@ import FilteredCards from "./components/pages/FilteredCards";
 import Activities from "./components/Activities";
 import ActivityCreate from "./components/ActivityCreate";
 import image from "/Users/pedro/Desktop/Henry/P INDIVIDUALES/PI-Countries-main/client/src/binary globe image herny pi.avif";
-
+import styles from "../src/styles/components/app.module.css";
 function App() {
   return (
-    <div className="App">
+    <div>
       <Link to="/home">
         <button>Home</button>
       </Link>
@@ -19,7 +19,7 @@ function App() {
       <Route path="/createactivity" component={ActivityCreate} />
       <Route path="/activities" component={Activities} />
       <Route exact path="/filteredcountry" component={FilteredCards} />
-      <img src={image} alt="pic" />
+      {/* <img className={`${styles.bgImage}`} src={image} alt="pic" /> */}
     </div>
   );
 }

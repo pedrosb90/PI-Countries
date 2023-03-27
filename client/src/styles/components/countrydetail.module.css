@@ -1,0 +1,67 @@
+.div {
+  display: grid;
+  grid-gap: 20px;
+  gap: 20px;
+  padding: 65px;
+
+  background-position: center;
+}
+.contenedorflag {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 350px;
+  border: 1.25px solid rgb(255, 253, 253);
+  border-radius: 14px;
+  height: 250px;
+  background-color: #b2b2b2;
+  background-color: rgba(0, 0, 0, 0.18);
+  opacity: 92%;
+}
+.card {
+  background-image: url("/Users/pedro/Desktop/Henry/P INDIVIDUALES/PI-Countries-main/client/src/binary globe image herny pi.avif");
+  border-radius: 85px;
+  border-bottom: 30px;
+  border-top: 30px;
+  margin-bottom: 120px;
+  padding: 50px 50px;
+  text-align: center;
+  background-size: 200%;
+}
+.button {
+  background-color: rgba(128, 128, 128, 0.3);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 50px 30px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #fff;
+  color: rgba(128, 128, 128, 0.7);
+}
+
+.content {
+  display: flex;
+  color: white;
+  font-size: 12pt;
+}
+
+.name {
+  color: white;
+}
+.title {
+  color: white;
+  font-size: 24pt;
+  font-weight: 800;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
