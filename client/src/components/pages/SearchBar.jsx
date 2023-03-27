@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { filterCountries } from "../../actions/index";
+import styles from "../../styles/filterbuttons/home.module.css";
 
 function SearchBar(props) {
   const { onSearchInput, onReset, searchInput } = props;
@@ -33,8 +34,12 @@ function SearchBar(props) {
         onChange={handleInputChange}
         onKeyPress={handleKeyPress}
       />
-      <button onClick={handleResetClick}>Reset</button>
-      <button onClick={handleFilterCountries}>Filter Countries</button>
+      <button className={`${styles.button}`} onClick={handleResetClick}>
+        Reset
+      </button>
+      <button className={`${styles.button}`} onClick={handleFilterCountries}>
+        Filter Countries
+      </button>
     </div>
   );
 }

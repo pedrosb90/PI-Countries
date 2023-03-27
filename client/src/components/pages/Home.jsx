@@ -29,16 +29,17 @@ function Home() {
   }, [filteredCountries]);
 
   return (
-    <div>
-      <h1>Henry Countries</h1>
+    <div className={`${styles.center}`}>
+      <h1 className={`${styles.titleMain}`}>HENY COUNTRIES</h1>
       <CountryFilter />
+
       <br />
       <label>Sort by Continent: </label>
       <input type="text" name="filter" placeholder="Continent Name.." />
 
       <button className={`${styles.button}`} type="text" name="orderAtoZ">
         {" "}
-        Order Alphabetically{" "}
+        Order Countries Alphabetically{" "}
       </button>
       <button className={styles.button} type="text" name="activity">
         {" "}
@@ -48,7 +49,7 @@ function Home() {
         <FilteredCards />
       ) : (
         <>
-          <h3> Countries </h3>
+          <h3 className={styles.title}> Country List </h3>
           <CountryCard />
         </>
       )}

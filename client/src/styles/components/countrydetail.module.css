@@ -46,18 +46,20 @@ button:hover {
 }
 
 .content {
-  display: flex;
   color: white;
-  font-size: 12pt;
+  font-size: 14pt;
+  margin-bottom: 5px;
+  text-shadow: 6px 6px 6px rgb(1, 1, 1);
 }
 
-.name {
-  color: white;
-}
 .title {
   color: white;
   font-size: 24pt;
   font-weight: 800;
+  text-shadow: 6px 6px 6px rgb(1, 1, 1);
+}
+.name {
+  color: white;
 }
 
 .img {
