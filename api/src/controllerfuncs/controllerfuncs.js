@@ -119,6 +119,7 @@ async function createActivity(name, difficulty, duration, season, countryName) {
       season,
       countryName,
     });
+    await activity.save();
 
     return activity;
   } catch (err) {
