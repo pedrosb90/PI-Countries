@@ -17,40 +17,14 @@ activities.get("/", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
-
 activities.post("/", async (req, res) => {
-  const { name, difficulty, duration, season, countryName } = req.body;
-
-  if (typeof name !== "string" || name.trim().length === 0) {
-    res.status(400).send("Invalid name");
-    return;
-  }
-
-  const difficultyValue = parseInt(difficulty);
-  if (isNaN(difficultyValue) || difficultyValue < 1 || difficultyValue > 5) {
-    res.status(400).send("Invalid difficulty");
-    return;
-  }
-
-  const durationValue = parseInt(duration);
-  if (isNaN(durationValue) || durationValue < 0) {
-    res.status(400).send("Invalid duration");
-    return;
-  }
-
-  const validSeasons = ["spring", "summer", "fall", "winter"];
-  if (!validSeasons.includes(season.toLowerCase())) {
-    res.status(400).send("Invalid season");
-    return;
-  }
-
   try {
     const activityRecord = await createActivity(
-      name,
-      difficultyValue,
-      durationValue,
-      season,
-      countryName
+      req.body.name,
+      req.body.difficulty,
+      req.body.duration,
+      req.body.season,
+      req.body.countryName
     );
 
     res.json(activityRecord);

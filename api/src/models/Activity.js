@@ -1,4 +1,4 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes, Sequelize } = require("sequelize");
 
 module.exports = (sequelize) => {
   const Activity = sequelize.define(
@@ -25,7 +25,7 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
     },
-    { timestamps: false }
+    { timestamps: true }
   );
 
   Activity.associate = (models) => {

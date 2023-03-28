@@ -99,6 +99,19 @@ async function createActivity(name, difficulty, duration, season, countryName) {
       throw new Error("Country not found");
     }
 
+    if (difficulty < 1 || difficulty > 5) {
+      throw new Error("Invalid difficulty");
+    }
+
+    if (duration < 0) {
+      throw new Error("Invalid duration");
+    }
+
+    const validSeasons = ["spring", "summer", "fall", "winter"];
+    if (!validSeasons.includes(season.toLowerCase())) {
+      throw new Error("Invalid season");
+    }
+
     const activity = await Activity.create({
       name,
       difficulty,
