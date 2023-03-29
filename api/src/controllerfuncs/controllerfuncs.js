@@ -1,6 +1,5 @@
 const axios = require("axios");
-const { UUIDV4, UUID } = require("sequelize");
-const uuid = require("uuid");
+
 const { Country, Activity } = require("../db");
 const { API_KEY } = process.env;
 
@@ -11,6 +10,7 @@ async function getTotalCountryData() {
     totalCountryData.data.map(async (m) => {
       const existingCountry = await Country.findOne({
         where: { countryId: m.cca3 },
+        include: Activity,
       });
       if (existingCountry) {
         return existingCountry;
