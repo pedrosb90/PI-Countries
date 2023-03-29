@@ -62,13 +62,26 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case SORT_COUNTRIES_BY_ACTIVITY:
-      const activity = action.payload;
-      const actsorted = state.countries.filter((c) =>
-        c.activities.includes(activity)
+      const { activity } = action.payload;
+      const paises = state.countries;
+      const filtrados = paises.filter((country) => {
+        return country.activities.some(
+          (act) => act.name.toLowerCase() === activity.toLowerCase()
+        );
+      });
+      return {
+        ...state,
+        filtrados,
+      };
+    case SORT_COUNTRIES_BY_CONTINENT:
+      const { continent } = action.payload;
+      const countries = state.countries;
+      const sortedC = countries.filter(
+        (country) => country.continent === continent
       );
       return {
         ...state,
-        sortedCountries: actsorted,
+        sortedC,
       };
 
     case FILTER_COUNTRIES:
@@ -95,15 +108,17 @@ const rootReducer = (state = initialState, action) => {
         sortOrder: action.payload,
       };
     case SORT_COUNTRIES_BY_POPULATION:
-      const sortedPop = [...state.filteredCountries].sort((a, b) => {
-        return action.payload === "asc"
-          ? a.population - b.population
-          : b.population - a.population;
+      const srtdcountries = state.countries.slice().sort((a, b) => {
+        if (state.sortOrder === "asc") {
+          return a.population - b.population;
+        } else {
+          return b.population - a.population;
+        }
       });
       return {
         ...state,
-        filteredCountries: sortedPop,
-        sortOrder: action.payload,
+        countries: srtdcountries,
+        sortOrder: state.sortOrder === "asc" ? "desc" : "asc",
       };
     case DELETE_ACTIVITY:
       const activitiesAfterDelete = state.activities.filter((activity) => {

@@ -22,7 +22,10 @@ function ActivityCreate() {
 
     setActivity({
       ...activity,
-      [name]: value.charAt(0).toUpperCase() + value.slice(1),
+      [name]:
+        name === "season"
+          ? value
+          : value.charAt(0).toUpperCase() + value.slice(1),
     });
   }
 
@@ -37,9 +40,7 @@ function ActivityCreate() {
       difficulty,
       duration,
     };
-
     dispatch(postActivity(newActivity));
-
     setActivity({
       name: "",
       difficulty: 0,
@@ -119,10 +120,10 @@ function ActivityCreate() {
         <ActivitiesGo />
       </Link>
       <br />
-      <text>
+      <div className={`${styles.content}`}>
         Note: Duration must be set in minutes required to do the activity. Have
         fun creating activities!
-      </text>
+      </div>
     </div>
   );
 }

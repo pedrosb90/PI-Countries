@@ -26,7 +26,6 @@ const CountryDetail = () => {
   if (!country) {
     return <div>Loading...</div>;
   }
-
   return (
     <div className={`${styles.card}`}>
       <h1 className={`${styles.title}`}>Detail</h1>
@@ -46,7 +45,7 @@ const CountryDetail = () => {
       {country.activities && country.activities.length > 0 && (
         <div>
           {country.activities.map((a) => (
-            <Activities key={a.name} a={a} />
+            <Activities key={a.name} />
           ))}
         </div>
       )}

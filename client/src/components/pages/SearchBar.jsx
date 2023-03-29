@@ -5,6 +5,9 @@ import {
   sortCountriesAZ,
   sortCountriesByPopulation,
 } from "../../actions/index";
+import SortByActivity from "./sortByActivtiy";
+import SortByContinent from "./sortByContinent";
+
 import styles from "../../styles/filterbuttons/home.module.css";
 
 function SearchBar(props) {
@@ -63,6 +66,12 @@ function SearchBar(props) {
           sortOrder === "asc" ? "(low to high)" : "(high to low)"
         }`}
       </button>
+      <div>
+        <SortByContinent />
+      </div>
+      <div>
+        <SortByActivity />
+      </div>
     </div>
   );
 }

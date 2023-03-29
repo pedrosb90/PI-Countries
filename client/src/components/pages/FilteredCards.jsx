@@ -9,8 +9,9 @@ const FilteredCards = () => {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <div className={`${styles.container}`}>
       <h1 className={`${styles.title}`}>Found Countries</h1>
+      <br />
       {filteredCountries.map((country) => (
         <div className={`${styles.card}`} key={country.countryId}>
           <h2 className={`${styles.content}`}>Name: {country.name}</h2>

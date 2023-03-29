@@ -6,10 +6,19 @@ import FilteredCards from "./components/pages/FilteredCards";
 import Activities from "./components/Activities";
 import ActivityCreate from "./components/ActivityCreate";
 import HomeButton from "./components/pages/HomeButton";
+import backgroundImage from "/Users/pedro/Desktop/Henry/P INDIVIDUALES/PI-Countries-main/client/src/MOON_LANDSCAPE4_generated.jpg";
 
 function App() {
   return (
-    <div className="bg">
+    <div
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        height: "100vh",
+        width: "100vw",
+      }}
+    >
       <Link to="/home">
         <HomeButton>Home</HomeButton>
       </Link>
@@ -19,7 +28,6 @@ function App() {
       <Route path="/createactivity" component={ActivityCreate} />
       <Route exact path="/filteredcountry" component={FilteredCards} />
       <Route exact path="/activities" component={Activities} />
-      {/* <img className={`${styles.bgImage}`} src={image} alt="pic" /> */}
     </div>
   );
 }

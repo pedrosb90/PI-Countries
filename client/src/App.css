@@ -36,10 +36,3 @@
     transform: rotate(360deg);
   }
 }
-.bg {
-  background-image: url("/Users/pedro/Desktop/Henry/P INDIVIDUALES/PI-Countries-main/client/src/MOON_LANDSCAPE4_generated.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100%;
-}

@@ -1,3 +1,10 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  padding: 20px;
+}
+
 .buttonHome {
   background-color: rgba(53, 20, 76, 0.5);
   text-shadow: 4px 4px 4px rgb(204, 204, 204);
@@ -26,6 +33,22 @@
   margin: 5px;
   transition: all 0.3s ease;
   opacity: 80%;
+}
+.select {
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 2px black;
+  color: #333;
+  font-size: 16px;
+  padding: 10px 20px;
+  margin: 5px;
+  transition: all 0.3s ease;
+}
+
+.select:focus {
+  outline: none;
+  box-shadow: 1px 1px 5px rgba(0, 128, 128, 0.5);
 }
 .buttonReset {
   background-color: rgba(205, 13, 13, 0.5);

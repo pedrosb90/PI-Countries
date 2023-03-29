@@ -39,16 +39,6 @@ function Home() {
       <CountryFilter />
 
       <br />
-      <div>
-        {" "}
-        <input type="text" name="filter" placeholder="Continent Name.." />
-        <button className={`${styles.button}`}>Filter by Continent</button>
-      </div>
-      <div>
-        {" "}
-        <input type="text" name="filter" placeholder="Activity Name.." />
-        <button className={`${styles.button}`}>Filter by Activity</button>
-      </div>
 
       {filter.length > 0 ? (
         <FilteredCards />

@@ -15,7 +15,7 @@ function CountryCard() {
   }
 
   return (
-    <div>
+    <div className={`${styles.container}`}>
       {countries.map((country, index) => (
         <div className={`${styles.card}`} key={index}>
           <h1 className={`${styles.title}`}>{country.name}</h1>
