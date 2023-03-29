@@ -28,7 +28,6 @@ async function getTotalCountryData() {
       return country;
     })
   );
-  console.log(countryData);
   return countryData;
 }
 getTotalCountryData()
@@ -119,6 +118,7 @@ async function createActivity(name, difficulty, duration, season, countryName) {
       season,
       countryName,
     });
+    await activity.addCountry(country);
     await activity.save();
 
     return activity;
