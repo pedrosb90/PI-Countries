@@ -19,11 +19,12 @@ function Activities() {
 
   return (
     <div className={`${styles.center}`}>
-      <h2 className={`${styles.title} ${styles.center}`}>Activities</h2>
+      <h2 className={`${styles.title}`}>Activities</h2>
       <Link to="/createactivity">
         <button className={`${styles.button} `}>Create Activity</button>
       </Link>
       <br />
+
       {activities.map((activity) => (
         <div className={`${styles.card}`} key={activity.id}>
           <h3 className={`${styles.title}`}>{activity.name}</h3>

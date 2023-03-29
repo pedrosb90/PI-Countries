@@ -1,8 +1,11 @@
 .container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-gap: 20px;
   padding: 20px;
+  max-height: 500px;
+  align-items: flex-end;
+  overflow: scroll;
 }
 .div {
   display: grid;
@@ -18,10 +21,11 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 350px;
+  width: 90px;
+  height: 60px;
   border: 1.25px solid rgb(255, 253, 253);
   border-radius: 14px;
-  height: 250px;
+
   background-color: #b2b2b2;
   background-color: rgba(0, 0, 0, 0.18);
   opacity: 92%;
@@ -35,6 +39,7 @@
   padding: 50px 50px;
   text-align: center;
   background-size: 200%;
+  border: 6px solid white;
 }
 .button {
   background-color: rgba(128, 128, 128, 0.3);

@@ -27,8 +27,8 @@
   border-radius: 85px;
   border-bottom: 30px;
   border-top: 30px;
-  margin-bottom: 120px;
-  padding: 50px 50px;
+  margin-bottom: 115px;
+  padding: 60px 140px;
   text-align: center;
   background-size: 200%;
   display: flex;
@@ -37,6 +37,7 @@
   align-items: center;
   text-align: center;
   opacity: 90%;
+  border: 6px solid white;
 }
 .center {
   text-align: center;

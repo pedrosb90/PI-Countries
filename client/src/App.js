@@ -15,8 +15,8 @@ function App() {
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        height: "100vh",
-        width: "100vw",
+        height: "100%",
+        width: "100%",
       }}
     >
       <Link to="/home">
