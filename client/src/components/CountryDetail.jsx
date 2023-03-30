@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getById } from "../actions";
-import Activities from "./Activities";
+import CountryActivities from "../components/CountryActivities";
 import styles from "../styles/components/countrydetail.module.css";
 
 const CountryDetail = () => {
@@ -48,9 +48,7 @@ const CountryDetail = () => {
 
       {country.activities && country.activities.length > 0 && (
         <div>
-          {country.activities.map((activity) => (
-            <Activities key={activity.name} activity={activity} />
-          ))}
+          <CountryActivities />
         </div>
       )}
     </div>

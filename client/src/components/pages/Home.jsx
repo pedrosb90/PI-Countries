@@ -36,6 +36,7 @@ function Home() {
       </Link>
       <div className={`${styles.container}`}>
         <h1 className={`${styles.titleMain}`}>Henry Countries App</h1>
+
         <CountryFilter />
 
         <CountryCard />

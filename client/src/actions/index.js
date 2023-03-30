@@ -4,6 +4,7 @@ export const GET_ACTIVITIES = "GET_ACTIVITIES";
 export const GET_BY_NAME = "GET_BY_NAME";
 export const GET_BY_ID = "GET_BY_ID";
 export const POST_ACTIVITY = "POST_ACTIVITY";
+export const GET_COUNTRY_ACTIVITIES = "GET_COUNTRY_ACTIVITIES";
 export const SORT_COUNTRIES_BY_CONTINENT = "SORT_COUNTRIES_BY_CONTINENT";
 export const SORT_COUNTRIES_BY_ACTIVITY = "SORT_COUNTRIES_BY_ACTIVITY";
 export const SORT_COUNTRIES_BY_POPULATION = "SORT_COUNTRIES_BY_POPULATION";
@@ -43,6 +44,21 @@ export const getById = (countryId) => {
     const { countries } = getState();
     const country = countries.find((c) => c.countryId === countryId);
     dispatch({ type: GET_BY_ID, payload: country });
+  };
+};
+
+export const getCountryActivities = (countryId) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/activities/${countryId}`
+      );
+      console.log(response);
+      const data = response.data;
+      dispatch({ type: GET_COUNTRY_ACTIVITIES, payload: data });
+    } catch (error) {
+      console.error(error);
+    }
   };
 };
 

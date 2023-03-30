@@ -5,8 +5,8 @@ import {
   sortCountriesAZ,
   sortCountriesByPopulation,
 } from "../../actions/index";
-import SortByActivity from "./sortByActivtiy";
-import SortByContinent from "./sortByContinent";
+import SortByActivity from "./SortByActivtiy";
+import SortByContinent from "./SortByContinent";
 
 import styles from "../../styles/filterbuttons/home.module.css";
 

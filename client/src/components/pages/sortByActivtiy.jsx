@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { sortCountriesByActivity } from "../../actions";
 import styles from "../../styles/filterbuttons/home.module.css";
 
@@ -16,6 +16,8 @@ function SortByActivity() {
     dispatch(sortCountriesByActivity(activity));
   };
 
+  const filteredCountries = useSelector((state) => state.filteredCountries);
+
   return (
     <div>
       <input
@@ -27,6 +29,13 @@ function SortByActivity() {
       <button className={`${styles.button}`} onClick={handleFilterCountries}>
         Filter by Activity
       </button>
+      {filteredCountries && filteredCountries.length > 0 && (
+        <ul>
+          {filteredCountries.map((country) => (
+            <li key={country.name}>{country.name}</li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

@@ -4,6 +4,7 @@ import {
   GET_BY_NAME,
   GET_BY_ID,
   POST_ACTIVITY,
+  GET_COUNTRY_ACTIVITIES,
   SORT_COUNTRIES_BY_CONTINENT,
   SORT_COUNTRIES_BY_POPULATION,
   SORT_COUNTRIES_BY_ACTIVITY,
@@ -14,11 +15,14 @@ import {
 } from "../actions/index";
 
 const initialState = {
+  countryActivities: [],
   countries: [],
   filteredCountries: [],
   activities: [],
   country: null,
   sortOrder: "asc",
+  totalPages: 0,
+  currentPage: 1,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -37,6 +41,15 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         activities: [],
+      };
+    case GET_COUNTRY_ACTIVITIES:
+      const { countryId, activities } = action.payload;
+      return {
+        ...state,
+        countryActivities: {
+          ...state.countryActivities,
+          [countryId]: activities,
+        },
       };
 
     case GET_BY_NAME:
@@ -115,14 +128,7 @@ const rootReducer = (state = initialState, action) => {
         countries: srtdcountries,
         sortOrder: state.sortOrder === "asc" ? "desc" : "asc",
       };
-    case DELETE_ACTIVITY:
-      const activitiesAfterDelete = state.activities.filter((activity) => {
-        return activity.id !== action.payload;
-      });
-      return {
-        ...state,
-        activities: activitiesAfterDelete,
-      };
+
     default:
       return state;
   }

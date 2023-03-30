@@ -16,13 +16,12 @@ function App() {
         backgroundSize: "cover",
         backgroundPosition: "center",
         height: "100%",
-        width: "100%",
+        width: "100",
       }}
     >
       <Link to="/home">
         <HomeButton>Home</HomeButton>
       </Link>
-
       <Route exact path="/home" component={Home} />
       <Route path="/countries/:countryId" component={CountryDetail} />
       <Route path="/createactivity" component={ActivityCreate} />

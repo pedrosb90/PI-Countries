@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 
 function CountryFilter() {
   const [searchInput, setSearchInput] = useState("");
+
   const dispatch = useDispatch();
   const filteredCountries = useSelector((state) => state.filteredCountries);
 
