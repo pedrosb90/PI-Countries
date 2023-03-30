@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
     Activity.belongsToMany(models.Country, {
       through: "CountryActivities",
       foreignKey: "activityId",
-      otherKey: "countryCountryId",
+      otherKey: "countryId",
     });
   };
 

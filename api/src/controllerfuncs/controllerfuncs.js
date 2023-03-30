@@ -142,7 +142,7 @@ async function filterByName(name) {
     population: m.population,
     area: m.area,
   }));
-
+  console.log(countries);
   if (searchName) {
     const searchTerm = searchName.toLowerCase();
 
