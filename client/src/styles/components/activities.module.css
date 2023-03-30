@@ -8,12 +8,15 @@
   padding: 10px 20px;
   margin: 5px;
   transition: all 0.3s ease;
+  display: block;
+  margin: 0 auto;
 }
 .title {
   color: white;
   font-size: 24pt;
   font-weight: 800;
   text-shadow: 6px 6px 6px rgb(1, 1, 1);
+  text-align: center;
 }
 .content {
   color: white;
@@ -38,7 +41,10 @@
   text-align: center;
   opacity: 90%;
   border: 6px solid white;
+  width: 600px;
+  justify-content: center;
+  align-items: center;
 }
 .center {
-  text-align: center;
+  margin: 0 auto;
 }

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import CountryFilter from "./CountryFilter";
 import ActivitiesGo from "./ActivitiesGo";
 import { filterCountries, getAllCountries } from "../../actions";
-import FilteredCards from "../../components/pages/FilteredCards";
 import CountryCard from "../CountryCard";
 import styles from "../../styles/filterbuttons/home.module.css";
 
@@ -35,19 +34,12 @@ function Home() {
       <Link to="/activities">
         <ActivitiesGo>Go to Activities</ActivitiesGo>
       </Link>
-      <h1 className={`${styles.titleMain}`}>Henry Countries App</h1>
-      <CountryFilter />
+      <div className={`${styles.container}`}>
+        <h1 className={`${styles.titleMain}`}>Henry Countries App</h1>
+        <CountryFilter />
 
-      <br />
-
-      {filter.length > 0 ? (
-        <FilteredCards />
-      ) : (
-        <>
-          <h3 className={styles.title}> Country List </h3>
-          <CountryCard />
-        </>
-      )}
+        <CountryCard />
+      </div>
     </div>
   );
 }

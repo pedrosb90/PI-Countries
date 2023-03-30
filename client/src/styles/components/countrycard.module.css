@@ -14,8 +14,8 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 90px;
-  height: 60px;
+  width: 150px;
+  height: 90px;
   border: 1.25px solid rgb(255, 253, 253);
   border-radius: 14px;
   background-color: #b2b2b2;
@@ -25,9 +25,9 @@
 .card {
   background-image: url("/Users/pedro/Desktop/Henry/P INDIVIDUALES/PI-Countries-main/client/src/binaryGlobe.jpg");
   border-radius: 85px;
-  border-bottom: 30px;
+  border-bottom: 5px;
   border-top: 30px;
-  margin-bottom: 120px;
+  margin-bottom: 45px;
   padding: 50px 50px;
   text-align: center;
   background-size: 200%;
@@ -36,37 +36,43 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  opacity: 90%;
+  opacity: 100%;
   border: 6px solid white;
+  width: 150px;
+  height: 270px;
 }
+
 .button {
-  background-color: rgba(128, 128, 128, 0.3);
+  background-color: rgba(255, 235, 84, 0.275);
   color: #fff;
   border: none;
   border-radius: 30px;
-  padding: 50px 30px;
-  font-size: 16px;
+  padding: 20px 10px;
+  font-size: 14px;
   font-weight: bold;
   cursor: pointer;
 }
 
 button:hover {
   background-color: #fff;
-  color: rgba(128, 128, 128, 0.7);
+  color: rgba(231, 131, 244, 0.7);
 }
 
 .content {
   color: white;
   font-size: 14pt;
+
   margin-bottom: 5px;
-  text-shadow: 6px 6px 6px rgb(1, 1, 1);
+  text-shadow: 8px 8px 8px rgb(1, 1, 1);
 }
 
 .title {
+  margin-top: auto;
   color: white;
-  font-size: 24pt;
+  font-size: 20pt;
   font-weight: 800;
   text-shadow: 6px 6px 6px rgb(1, 1, 1);
+  line-height: 1;
 }
 .name {
   color: white;
@@ -93,4 +99,7 @@ label {
 label:hover {
   background-color: rgba(0, 128, 128, 0.8);
   cursor: pointer;
+}
+.center {
+  margin: 0 auto;
 }

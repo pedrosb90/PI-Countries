@@ -40,14 +40,9 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case GET_BY_NAME:
-      const filteredByName = state.countries.filter((country) => {
-        return country.name
-          .toLowerCase()
-          .includes(action.payload.toLowerCase());
-      });
       return {
         ...state,
-        filteredCountries: filteredByName,
+        filteredCountries: action.payload,
       };
     case GET_BY_ID:
       return {

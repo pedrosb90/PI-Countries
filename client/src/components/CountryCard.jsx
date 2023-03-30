@@ -19,7 +19,6 @@ function CountryCard() {
       {countries.map((country, index) => (
         <div className={`${styles.card}`} key={index}>
           <h1 className={`${styles.title}`}>{country.name}</h1>
-
           <h1 className={`${styles.content}`}>Id: {country.countryId}</h1>
           <h1 className={`${styles.content}`}>
             Continent: {country.continent}

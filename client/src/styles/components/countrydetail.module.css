@@ -17,29 +17,36 @@
 }
 .contenedorflag {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 90px;
-  height: 60px;
+  display: center;
+  flex-direction: row;
+  width: 280px;
+  height: 195px;
   border: 1.25px solid rgb(255, 253, 253);
   border-radius: 14px;
-
   background-color: #b2b2b2;
   background-color: rgba(0, 0, 0, 0.18);
   opacity: 92%;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+}
+.flagAlign {
+  float: right;
 }
 .card {
+  margin: 0px auto;
   background-image: url("/Users/pedro/Desktop/Henry/P INDIVIDUALES/PI-Countries-main/client/src/binaryGlobe.jpg");
   border-radius: 85px;
   border-bottom: 30px;
   border-top: 30px;
   margin-bottom: 120px;
   padding: 50px 50px;
-  text-align: center;
+  text-align: justify;
   background-size: 200%;
   border: 6px solid white;
+  opacity: 90%;
+  height: 500px;
+  width: 900px;
 }
 .button {
   background-color: rgba(128, 128, 128, 0.3);
@@ -47,7 +54,7 @@
   border: none;
   border-radius: 30px;
   padding: 50px 30px;
-  font-size: 16px;
+  font-size: 18px;
   cursor: pointer;
 }
 
@@ -57,10 +64,11 @@ button:hover {
 }
 
 .content {
-  color: white;
-  font-size: 14pt;
+  color: rgb(255, 255, 255);
+  font-size: 16pt;
+  font-weight: 600;
   margin-bottom: 5px;
-  text-shadow: 6px 6px 6px rgb(1, 1, 1);
+  text-shadow: 8px 8px 8px rgb(6, 6, 6);
 }
 
 .title {

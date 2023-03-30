@@ -1,9 +1,3 @@
-.container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 20px;
-  padding: 20px;
-}
 
 .buttonHome {
   background-color: rgba(53, 20, 76, 0.5);

@@ -15,18 +15,16 @@ function Activities() {
       dispatch(resetActivities());
     };
   }, [dispatch]);
-  console.log(activities);
 
   return (
     <div className={`${styles.center}`}>
-      <h2 className={`${styles.title}`}>Activities</h2>
+      <h2 className={`${styles.title} `}>Activities</h2>
       <Link to="/createactivity">
-        <button className={`${styles.button} `}>Create Activity</button>
+        <button className={`${styles.button}`}>Create Activity</button>
       </Link>
       <br />
-
       {activities.map((activity) => (
-        <div className={`${styles.card}`} key={activity.id}>
+        <div className={`${styles.card} ${styles.center}`} key={activity.id}>
           <h3 className={`${styles.title}`}>{activity.name}</h3>
           <p className={`${styles.content}`}>
             Difficulty: {activity.difficulty}
