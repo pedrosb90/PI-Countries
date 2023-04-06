@@ -5,9 +5,9 @@ import {
   GET_BY_ID,
   POST_ACTIVITY,
   GET_COUNTRY_ACTIVITIES,
-  SORT_COUNTRIES_BY_CONTINENT,
+  FILTER_COUNTRIES_BY_CONTINENT,
   SORT_COUNTRIES_BY_POPULATION,
-  SORT_COUNTRIES_BY_ACTIVITY,
+  FILTER_COUNTRIES_BY_ACTIVITY,
   SORT_COUNTRIES_AZ,
   FILTER_COUNTRIES,
   DELETE_ACTIVITY,
@@ -20,9 +20,10 @@ const initialState = {
   filteredCountries: [],
   activities: [],
   country: null,
-  sortOrder: "asc",
-  totalPages: 0,
-  currentPage: 1,
+  //
+  //   sortOrder: "asc",
+  //   totalPages: 0,
+  //   currentPage: 1,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -69,7 +70,7 @@ const rootReducer = (state = initialState, action) => {
         activities: [...state.activities, action.payload],
       };
 
-    case SORT_COUNTRIES_BY_ACTIVITY:
+    case FILTER_COUNTRIES_BY_ACTIVITY:
       const { activity } = action.payload;
       const paises = state.countries;
       const filtrados = paises.filter((country) => {
@@ -81,15 +82,10 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         filtrados,
       };
-    case SORT_COUNTRIES_BY_CONTINENT:
-      const { continent } = action.payload;
-      const countries = state.countries;
-      const sortedC = countries.filter(
-        (country) => country.continent === continent
-      );
+    case FILTER_COUNTRIES_BY_CONTINENT:
       return {
         ...state,
-        sortedC,
+        filteredCountries: action.payload,
       };
 
     case FILTER_COUNTRIES:

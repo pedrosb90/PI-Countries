@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { sortCountriesByContinent } from "../../actions";
+import { useSelector, useDispatch } from "react-redux";
 import styles from "../../styles/filterbuttons/home.module.css";
+import { filterCountriesByContinent } from "../../actions";
 
-function SortByContinent() {
+function FilterByContinent() {
   const dispatch = useDispatch();
 
   const [continent, setContinent] = useState("");
@@ -13,7 +13,7 @@ function SortByContinent() {
   };
 
   const handleFilterCountries = () => {
-    dispatch(sortCountriesByContinent(continent));
+    dispatch(filterCountriesByContinent(continent));
   };
 
   return (
@@ -24,11 +24,11 @@ function SortByContinent() {
         className={`${styles.select}`}
       >
         <option value="">--Select a continent--</option>
-        <option value="Africa">Africa</option>
-        <option value="Americas">Americas</option>
-        <option value="Asia">Asia</option>
-        <option value="Europe">Europe</option>
-        <option value="Oceania">Oceania</option>
+        <option value="africa">Africa</option>
+        <option value="americas">Americas</option>
+        <option value="asia">Asia</option>
+        <option value="europe">Europe</option>
+        <option value="oceania">Oceania</option>
       </select>
       <button className={`${styles.button}`} onClick={handleFilterCountries}>
         Filter by Continent
@@ -37,4 +37,4 @@ function SortByContinent() {
   );
 }
 
-export default SortByContinent;
+export default FilterByContinent;

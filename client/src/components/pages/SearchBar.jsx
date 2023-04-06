@@ -5,8 +5,8 @@ import {
   sortCountriesAZ,
   sortCountriesByPopulation,
 } from "../../actions/index";
-import SortByActivity from "./SortByActivtiy";
-import SortByContinent from "./SortByContinent";
+import FilterByActivity from "./FilterByActivtiy";
+import FilterByContinent from "./FilterByContinent";
 
 import styles from "../../styles/filterbuttons/home.module.css";
 
@@ -67,10 +67,10 @@ function SearchBar(props) {
         }`}
       </button>
       <div>
-        <SortByContinent />
+        <FilterByContinent />
       </div>
       <div>
-        <SortByActivity />
+        <FilterByActivity />
       </div>
     </div>
   );
